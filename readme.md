@@ -20,6 +20,6 @@
 <pre><code>
    * cd /opt/data/brayWorth
    * su &lt;user&gt;
-   * git pull
+   * git pull - maybe git fetch -p is better
    * composer update
 </code></pre>
