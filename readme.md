@@ -17,6 +17,8 @@
 </code></pre>
 
 1. To stay up-to-date
+<pre><code>
    * cd /opt/data/brayWorth
    * su &lt;user&gt;
    * git pull
+</code></pre>
