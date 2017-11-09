@@ -15,7 +15,7 @@
 1. Switch to that user and pull in the repository
 ```bash
    su [user]
-   `git clone https://github.com/bravedave/brayworth-www.git brayworth`
+   git clone https://github.com/bravedave/brayworth-www.git brayworth
    cd brayworth
    composer install
 ```
