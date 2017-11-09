@@ -1,18 +1,18 @@
-# Brayworth Web Site
+# Brayworth Web Site(https://brayworth.com)
 
-## Deploy to Web Server
+### Deploy to Web Server
 1. Create a user account to run composer in
 ```bash
    useradd -m -s /bin/bash [user]
 ```
 
-1. Create a folder to hold the deployment
+2. Create a folder to hold the deployment
 ```bash
    mkdir /opt/data
    chmod 777 /opt/data
 ```
 
-1. Switch to that user and pull in the repository
+3. Switch to that user and pull in the repository
 ```bash
    su [user]
    git clone https://github.com/bravedave/brayworth-www.git brayworth
