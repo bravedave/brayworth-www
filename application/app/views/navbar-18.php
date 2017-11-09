@@ -28,7 +28,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a href="https://brayworth.com/webmail/" target="_blank" class="nav-link text-white">webmail</a>
+					<a href="https://mail.brayworth.com/webmail/" target="_blank" class="nav-link text-white">webmail</a>
 				</li>
 				<li class="nav-item active">
 					<a href="#about" class="nav-link text-white">about</a>
