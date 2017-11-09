@@ -21,4 +21,5 @@
    * cd /opt/data/brayWorth
    * su &lt;user&gt;
    * git pull
+   * composer update
 </code></pre>
