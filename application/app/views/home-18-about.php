@@ -76,7 +76,7 @@
 
 			<p>Find this source code for this web site at <a href="https://github.com/bravedave/brayworth-www/" target="_blank"><i class="fa fa-github"></i> https://github.com/bravedave/brayworth-www/</a></p>
 
-			<p>Find documentation of the DVC framework <a href="/docs/" target="_blank"><i class="fa fa-sticky-note-o"></i> here</a></p>
+			<p>Find documentation of the DVC framework <a href="/docs/"><i class="fa fa-sticky-note-o"></i> here</a></p>
 
 		</div>
 
