@@ -1,4 +1,4 @@
-# Brayworth Web Site(https://brayworth.com)
+## [Brayworth Web Site](https://brayworth.com)
 
 ### Deploy to Web Server
 1. Create a user account to run composer in
