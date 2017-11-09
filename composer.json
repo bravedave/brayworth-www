@@ -1,6 +1,6 @@
 {
-	"name": "bravedave/dvc-template",
-	"description": "A template for using the DVC Framework",
+	"name": "bravedave/brayworth-www",
+	"description": "Brayworth WWW Site",
 	"version": "0.0.1",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
@@ -19,8 +19,6 @@
 		}
 	],
 	"require": {
-		"php": ">=7.0",
-		"bravedave/dvc": "dev-master",
-		"ext-sqlite3": "*"
+		"bravedave/dvc": "dev-master"
 	}
 }
