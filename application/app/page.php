@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 	David Bray
 	BrayWorth Pty Ltd
 	e. david@brayworth.com.au
@@ -18,6 +18,3 @@ class page extends dvc\pages\bootstrap {
 	}
 
 }
-
-
-
