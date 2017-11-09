@@ -1,0 +1,32 @@
+body, html { height: 100%; }
+
+.navbar-brand, .navbar-nav>li>a { line-height: 40px; }
+
+.parallax {
+    /* The image used */
+	background-image: url(../images/bg.1.jpg);
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.about-button-a { background-color: rgb(252, 25, 31); }
+.about-button-b { background-color: #e8a32b; }
+.about-button-c { background-color: #68a4d6; }
+.about-button-d { background-color: #777; }
+.about-button-e { background-color: #3a486b; }
+
+pre {
+	padding: .2rem .4rem;
+	font-size: 90%;
+	color: #bd4147;
+	background-color: #f8f9fa;
+	border-radius: .25rem;
+}
+
