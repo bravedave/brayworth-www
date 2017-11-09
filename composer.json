@@ -1,11 +1,9 @@
 {
 	"name": "bravedave/brayworth-www",
 	"description": "Brayworth WWW Site",
-	"version": "0.0.1",
 	"minimum-stability": "dev",
-	"prefer-stable": true,
 	"homepage": "http://brayworth.com",
-	"type": "library",
+	"type": "project",
 	"license": "MIT",
 	"authors": [{
 		"name": "Brave Dave",
