@@ -6,7 +6,7 @@ body { font-family: "Bahnschrift Light", "Helvetica Neue", Arial, sans-serif }
 .parallax {
 
     /* Full height */
-    height: 100%;
+    height: calc( 100%);
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
