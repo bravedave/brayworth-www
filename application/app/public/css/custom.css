@@ -4,8 +4,6 @@ body { font-family: "Bahnschrift Light", "Helvetica Neue", Arial, sans-serif }
 .navbar-brand, .navbar-nav>li>a { line-height: 40px; }
 
 .parallax {
-    /* The image used */
-	background-image: url(../images/bg.1.jpg);
 
     /* Full height */
     height: 100%;
@@ -15,6 +13,18 @@ body { font-family: "Bahnschrift Light", "Helvetica Neue", Arial, sans-serif }
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+@media ( max-width: 1024px) {
+	.parallax {
+		/* The image used */
+		background-image: url(../images/bg-768.jpg);
+	}
+}
+@media ( min-width: 1025px) {
+	.parallax {
+		/* The image used */
+		background-image: url(../images/bg-1600.jpg);
+	}
 }
 
 .about-button-a { background-color: rgb(252, 25, 31); }
