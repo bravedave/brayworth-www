@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col col-sm-6">
+		<div class="col-8 col-sm-6">
 			<p>BrayWorth is a Full Stack Web Development Company.</p>
 
 			<p>Full Stack Web Development works with back end server-side languages
@@ -35,12 +35,12 @@
 
 		</div>
 
-		<div class="col-6 col-sm-3">
+		<div class="col-4 col-sm-3">
 			<img class="img img-responsive img-thumbnail" src="<?php url::write( 'images/iphone-profile.jpg' ) ?>" />
 
 		</div>
 
-		<div class="col-6 col-sm-3">
+		<div class="col-12 col-sm-6 col-md-3">
 			<div class="alert about-button-a text-center text-white">
 				HTML
 
@@ -83,22 +83,22 @@
 	</div>
 
 	<div class="row py-1">
-		<div class="col-3 offset-lg-2 col-lg-2 text-center">
-			<a class="btn btn-outline-secondary" href="https://www.bilingaslsc.com.au" target="_blank">Bilinga SLSC</a>
+		<div class="col-sm-3 offset-lg-2 col-lg-2 text-center">
+			<a class="btn btn-outline-secondary" href="https://www.bilingaslsc.com" target="_blank">Bilinga SLSC</a>
 
 		</div>
 
-		<div class="col-3 col-lg-2 text-center">
+		<div class="col-sm-3 col-lg-2 text-center">
 			<a class="btn btn-outline-secondary" href="https://www.darcy.com.au" target="_blank">D'Arcy Estate Agents</a>
 
 		</div>
 
-		<div class="col-3 col-lg-2 text-center">
+		<div class="col-sm-3 col-lg-2 text-center">
 			<a class="btn btn-outline-secondary" href="https://www.maricourt.com.au" target="_blank">Mari Court</a>
 
 		</div>
 
-		<div class="col-3 col-lg-2 text-center">
+		<div class="col-sm-3 col-lg-2 text-center">
 			<a class="btn btn-outline-secondary" href="https://yogagoldcoast.me/" target="_blank">Yoga Gold Coast</a>
 
 		</div>

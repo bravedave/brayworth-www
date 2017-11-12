@@ -1,3 +1,4 @@
 application/data/db.json
 vendor/*
 composer.lock
+application/app/public/css/dvc-4.min.css
