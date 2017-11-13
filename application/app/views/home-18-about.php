@@ -8,7 +8,7 @@
 		http://creativecommons.org/licenses/by/4.0/
 
 	*/	?>
-<div class="container py-4" id="about">
+<div class="container-fluid py-4 bg-white" id="about">
 	<div class="row">
 		<div class="offset-sm-3 col-sm-6">
 			<h1 class="text-center">Web Developer<br /> <small class="subtitle">Full Stack.</small></h1>
@@ -83,22 +83,22 @@
 	</div>
 
 	<div class="row py-1">
-		<div class="col-sm-3 offset-lg-2 col-lg-2 text-center">
+		<div class="col-sm-3 offset-xl-2 col-xl-2 text-center">
 			<a class="btn btn-outline-secondary" href="https://www.bilingaslsc.com" target="_blank">Bilinga SLSC</a>
 
 		</div>
 
-		<div class="col-sm-3 col-lg-2 text-center">
+		<div class="col-sm-3 col-xl-2 text-center">
 			<a class="btn btn-outline-secondary" href="https://www.darcy.com.au" target="_blank">D'Arcy Estate Agents</a>
 
 		</div>
 
-		<div class="col-sm-3 col-lg-2 text-center">
+		<div class="col-sm-3 col-xl-2 text-center">
 			<a class="btn btn-outline-secondary" href="https://www.maricourt.com.au" target="_blank">Mari Court</a>
 
 		</div>
 
-		<div class="col-sm-3 col-lg-2 text-center">
+		<div class="col-sm-3 col-xl-2 text-center">
 			<a class="btn btn-outline-secondary" href="https://yogagoldcoast.me/" target="_blank">Yoga Gold Coast</a>
 
 		</div>

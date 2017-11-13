@@ -13,7 +13,7 @@
 	$b = rand(1,9);
 
 	?>
-<div class="container py-4" id="contact">
+<div class="container-fluid py-4 bg-white" id="contact">
 	<h1 class="text-center">Contact</h1>
 
 	<div class="row">
