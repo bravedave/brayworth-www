@@ -50,12 +50,12 @@ class home extends Controller {
 				->title('navbar-18');
 
 			if ( $option == 'success') {
-				new dvc\html\div( 'Successfully sent message', ['class' => 'alert alert-success', 'style' => 'margin-top: 50px;']);
+				new dvc\html\div( 'Successfully sent message', ['class' => 'alert alert-success', 'style' => 'margin-top: 90px; max-width: 400px;']);
 
 			}
 			elseif ( $option == 'failure') {
 				new dvc\html\div( sprintf( '<b>Failed to send message</b> %s', $this->getParam('err')),
-					['class' => 'alert alert-warning', 'style' => 'margin-top: 50px;']);
+					['class' => 'alert alert-warning', 'style' => 'margin-top: 90px; max-width: 400px;']);
 
 			}
 
