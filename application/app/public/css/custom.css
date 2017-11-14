@@ -3,19 +3,25 @@ body { font-family: "Bahnschrift Light", "Helvetica Neue", Arial, sans-serif }
 
 .navbar-brand, .navbar-nav>li>a { line-height: 40px; }
 
-.parallax {
-    /* The image used */
-	background-image: url(../images/bg.1.jpg);
-
-    /* Full height */
-    height: 100%;
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+#parallax {
+	position: fixed;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	z-index: -1;
 }
+#parallax img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	min-width: 50%;
+	min-height: 50%;
+}
+.parallax { height: 100%; }
 
 .about-button-a { background-color: rgb(252, 25, 31); }
 .about-button-b { background-color: #e8a32b; }
