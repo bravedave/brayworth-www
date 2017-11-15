@@ -83,23 +83,23 @@
 	</div>
 
 	<div class="row py-1">
-		<div class="col-sm-3 offset-xl-2 col-xl-2 text-center">
-			<a class="btn btn-outline-secondary" href="https://www.bilingaslsc.com" target="_blank">Bilinga SLSC</a>
+		<div class="col-sm-6 col-md-3 offset-xl-2 col-xl-2 text-center">
+			<a class="btn btn-block btn-outline-secondary" href="https://www.bilingaslsc.com" target="_blank">Bilinga SLSC</a>
 
 		</div>
 
-		<div class="col-sm-3 col-xl-2 text-center">
-			<a class="btn btn-outline-secondary" href="https://www.darcy.com.au" target="_blank">D'Arcy Estate Agents</a>
+		<div class="col-sm-6 col-md-3 col-xl-2 text-center">
+			<a class="btn btn-block btn-outline-secondary" href="https://www.darcy.com.au" target="_blank">D'Arcy Estate Agents</a>
 
 		</div>
 
-		<div class="col-sm-3 col-xl-2 text-center">
-			<a class="btn btn-outline-secondary" href="https://www.maricourt.com.au" target="_blank">Mari Court</a>
+		<div class="col-sm-6 col-md-3 col-xl-2 text-center">
+			<a class="btn btn-block btn-outline-secondary" href="https://www.maricourt.com.au" target="_blank">Mari Court</a>
 
 		</div>
 
-		<div class="col-sm-3 col-xl-2 text-center">
-			<a class="btn btn-outline-secondary" href="https://yogagoldcoast.me/" target="_blank">Yoga Gold Coast</a>
+		<div class="col-sm-6 col-md-3 col-xl-2 text-center">
+			<a class="btn btn-block btn-outline-secondary" href="https://yogagoldcoast.me/" target="_blank">Yoga Gold Coast</a>
 
 		</div>
 
