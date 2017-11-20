@@ -77,7 +77,7 @@
 
 			<p>Find documentation of the DVC framework <a href="/docs/"><i class="fa fa-sticky-note-o"></i> here</a></p>
 
-			<p>Find .NET work at <a href="https://eastdose.net.au"> easydose.net.au</a></p>
+			<p>Find .NET work at <a href="https://eastdose.net.au" target="_blank"> easydose.net.au</a></p>
 
 			<p>Find some recent work at these websites:</p>
 
