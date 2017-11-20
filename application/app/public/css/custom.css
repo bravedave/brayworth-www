@@ -21,6 +21,16 @@ body { font-family: "Bahnschrift Light", "Helvetica Neue", Arial, sans-serif }
 	min-width: 50%;
 	min-height: 50%;
 }
+@media ( max-width: 1024px) and (orientation:portrait) {
+	#parallax img {
+		height: 50%;
+	}
+}
+@media ( max-width: 1024px) and (orientation:landscape) {
+	#parallax img {
+		width: 50%;
+	}
+}
 .parallax { height: 100%; }
 
 .about-button-a { background-color: rgb(252, 25, 31); }
