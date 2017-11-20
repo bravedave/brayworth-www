@@ -1,4 +1,5 @@
-application/data/db.json
-vendor/*
+application/data/
+vendor/
 composer.lock
 application/app/public/css/dvc-4.min.css
+application/app/public/js/brayworthlib.js

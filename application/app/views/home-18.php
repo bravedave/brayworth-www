@@ -16,19 +16,8 @@
 <script>
 $(document).ready( function() {
 	_brayworth_.hashScroll();
-
-	return;
-	var p = $('.parallax').first();
-
-	var dim = {
-		width : $(window).width(),
-		height : $(window).height(),
-		ph : p.height(),
-
-	}
-
-	$('<div>w:' + dim.width + ' / h:' + dim.height + ' : pw:' + dim.pw + '</div><p>&nbsp;</p><p>&nbsp;</p>').appendTo('body')
-
+	if ( _brayworth_.browser.isMobileDevice)
+		$('html, body').animate({ scrollTop: 150 }, 1000);
 
 })
 </script>
