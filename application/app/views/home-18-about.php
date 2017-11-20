@@ -77,7 +77,7 @@
 
 			<p>Find documentation of the DVC framework <a href="/docs/"><i class="fa fa-sticky-note-o"></i> here</a></p>
 
-			<p>Find .NET work at <a href="https://eastdose.net.au" target="_blank"> easydose.net.au</a></p>
+			<p>Find .NET work at <a href="https://easydose.net.au" target="_blank"> easydose.net.au</a></p>
 
 			<p>Find some recent work at these websites:</p>
 
@@ -87,12 +87,12 @@
 
 	<div class="row py-1">
 		<div class="col-sm-6 col-md-3 offset-xl-2 col-xl-2 text-center">
-			<a class="btn btn-block btn-outline-secondary" href="https://www.bilingaslsc.com" target="_blank">Bilinga SLSC</a>
+			<a class="btn btn-block btn-outline-secondary" href="https://www.darcy.com.au" target="_blank">D'Arcy Estate Agents</a>
 
 		</div>
-
+		
 		<div class="col-sm-6 col-md-3 col-xl-2 text-center">
-			<a class="btn btn-block btn-outline-secondary" href="https://www.darcy.com.au" target="_blank">D'Arcy Estate Agents</a>
+			<a class="btn btn-block btn-outline-secondary" href="https://www.bilingaslsc.com" target="_blank">Bilinga SLSC</a>
 
 		</div>
 
