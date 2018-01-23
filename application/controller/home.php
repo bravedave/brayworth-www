@@ -35,7 +35,8 @@ class home extends Controller {
 
 			}
 			else {
-				throw new Exceptions\CaptchaRequired;
+				print 'you did not successfully use this web site';
+				// throw new Exceptions\CaptchaRequired;
 
 			}
 
