@@ -62,7 +62,8 @@ class home extends Controller {
 
 			$this->load('home-18');
 			$this->load('home-18-about');
-			$this->load('home-18-contact');
+			if ( userAgent::isLegit())
+				$this->load('home-18-contact');
 
 	}
 

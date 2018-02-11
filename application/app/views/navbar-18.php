@@ -33,9 +33,11 @@
 				<li class="nav-item active">
 					<a href="#about" class="nav-link text-white">about</a>
 				</li>
+<?php if ( userAgent::isLegit()) {	?>
 				<li class="nav-item active">
 					<a href="#contact" class="nav-link text-white">contact</a>
 				</li>
+<?php }	?>
 
 			</ul>
 
