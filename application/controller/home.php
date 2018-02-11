@@ -16,7 +16,7 @@ class home extends Controller {
 		if ( $action == 'Submit' ) {
 			$riddle = $this->getPost('riddle');
 			$mathCheck = $this->getPost('mathCheck');
-			if ( (int)$riddle == (int)$mathCheck) {
+			if ( (int)$riddle && (int)$mathCheck && (int)$riddle == (int)$mathCheck) {
 				$contactName = $this->getPost('contactName');
 				$email = $this->getPost('email');
 				$comments = $this->getPost('comments');
