@@ -19,7 +19,11 @@ class home extends Controller {
 			if ( (int)$riddle && (int)$mathCheck && (int)$riddle == (int)$mathCheck) {
 				$contactName = $this->getPost('contactName');
 				$email = $this->getPost('email');
-				$comments = $this->getPost('comments');
+				$comments = sprintf( '%s
+
+IP : %s',
+					$this->getPost('comments'),
+			 		$this->Request->getRemoteIP());
 				$sendCopy = $this->getPost('sendCopy');
 
 				$mail = sys::mailer();
