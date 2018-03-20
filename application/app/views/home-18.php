@@ -16,8 +16,14 @@
 <script>
 $(document).ready( function() {
 	_brayworth_.hashScroll();
-	if ( _brayworth_.browser.isMobileDevice)
+	if ( _brayworth_.browser.isMobileDevice) {
 		$('html, body').animate({ scrollTop: 150 }, 1000);
+
+	}
+	else {
+		$('html, body').animate({ scrollTop: 100 }, 1000);
+
+	}
 
 })
 </script>

@@ -9,12 +9,7 @@
 
 	*/	?>
 <div class="container-fluid py-4 bg-white" id="about">
-	<div class="row">
-		<div class="offset-sm-3 col-sm-6">
-			<h1 class="text-center">Web Developer<br /> <small class="subtitle">Full Stack.</small></h1>
-		</div>
-
-	</div>
+	<h1 class="text-center">Web Developer<br class="d-block d-sm-none" /> <small class="subtitle">Full Stack</small></h1>
 
 	<div class="row">
 		<div class="col-8 col-sm-6">
@@ -41,12 +36,12 @@
 
 		<div class="col-12 col-sm-6 col-md-3">
 			<div class="alert about-button-a text-center text-white">
-				HTML
+				HTML/CSS
 
 			</div>
 
 			<div class="alert about-button-b text-center text-white">
-				CSS
+				Bootstrap
 
 			</div>
 
@@ -61,6 +56,11 @@
 			</div>
 
 			<div class="alert about-button-e text-center text-white">
+				REST
+
+			</div>
+
+			<div class="alert about-button-a text-center text-white">
 				DataBase
 
 			</div>
@@ -75,7 +75,7 @@
 
 			<p>Find the source code for this web site at <a href="https://github.com/bravedave/brayworth-www/" target="_blank"><i class="fa fa-github"></i> https://github.com/bravedave/brayworth-www/</a></p>
 
-			<p>Find documentation of the DVC framework <a href="/docs/"><i class="fa fa-sticky-note-o"></i> here</a></p>
+			<p>Find documentation of the MVC Web Application Architecture <a href="/docs/"><i class="fa fa-sticky-note-o"></i> here</a></p>
 
 			<p>Find .NET work at <a href="https://easydose.net.au" target="_blank"> easydose.net.au</a></p>
 
@@ -90,11 +90,6 @@
 			<a class="btn btn-block btn-outline-secondary" href="https://www.darcy.com.au" target="_blank">D'Arcy Estate Agents</a>
 
 		</div>
-		
-		<div class="col-sm-6 col-md-3 col-xl-2 text-center">
-			<a class="btn btn-block btn-outline-secondary" href="https://www.bilingaslsc.com" target="_blank">Bilinga SLSC</a>
-
-		</div>
 
 		<div class="col-sm-6 col-md-3 col-xl-2 text-center">
 			<a class="btn btn-block btn-outline-secondary" href="https://www.maricourt.com.au" target="_blank">Mari Court</a>
@@ -102,7 +97,12 @@
 		</div>
 
 		<div class="col-sm-6 col-md-3 col-xl-2 text-center">
-			<a class="btn btn-block btn-outline-secondary" href="https://yogagoldcoast.me/" target="_blank">Yoga Gold Coast</a>
+			<a class="btn btn-block btn-outline-secondary" href="https://friendsofcurrumbin.com/" target="_blank">FOC</a>
+
+		</div>
+
+		<div class="col-sm-6 col-md-3 col-xl-2 text-center">
+			<a class="btn btn-block btn-outline-secondary" href="https://www.bilingaslsc.com" target="_blank">Bilinga SLSC</a>
 
 		</div>
 
