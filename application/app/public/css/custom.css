@@ -1,7 +1,9 @@
 html, body { height: 100%; }
 body { font-family: "Bahnschrift Light", "Helvetica Neue", Arial, sans-serif }
 
-.navbar-brand, .navbar-nav>li>a { line-height: 40px; }
+/*
+.navbar-brand, .navbar-nav>li>a { line-height: 40px; } 
+*/
 
 #parallax {
 	position: fixed;

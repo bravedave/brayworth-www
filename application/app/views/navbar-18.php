@@ -10,7 +10,7 @@
 	DO NOT change this file
 	Copy it to <application>/app/views/ and modify it there
 	*/	?>
-	<nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-md" role="navigation" >
+	<nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-md py-1" role="navigation" >
 		<div class="navbar-header" >
 			<?php printf( '<a href="%s" class="navbar-brand text-white" >%s</a>', \url::$URL, $this->data->title);	?>
 
