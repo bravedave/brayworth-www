@@ -16,6 +16,8 @@ abstract class config extends _config {
 	static $SUPPORT_EMAIL = 'david@brayworth.com.au';
 	static $EMAIL_ERRORS_TO_SUPPORT = TRUE;
 	//~ static $MAILSERVER = 'mail';
+	
+	static $TIMEZONE = 'Australia/Brisbane';
 
 }
 
