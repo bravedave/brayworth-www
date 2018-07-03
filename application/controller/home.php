@@ -19,11 +19,11 @@ class home extends Controller {
 			if ( (int)$riddle && (int)$mathCheck && (int)$riddle == (int)$mathCheck) {
 				$contactName = $this->getPost('contactName');
 				$email = $this->getPost('email');
-				$comments = sprintf( '%s
-
-IP : %s',
+				$comments = sprintf( '%s%s%sIP : %s',
 					$this->getPost('comments'),
-			 		$this->Request->getRemoteIP());
+					PHP_EOL, PHP_EOL,
+					$this->Request->getRemoteIP());
+
 				$sendCopy = $this->getPost('sendCopy');
 
 				$mail = sys::mailer();
@@ -50,6 +50,7 @@ IP : %s',
 
 	public function __index( $option = '') {
 		$p = new page;
+			$p->css[] = sprintf( '<link rel="canonical" href="%s" />', url::$URL);
 			$p
 				->header()
 				->title('navbar-18');
