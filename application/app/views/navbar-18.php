@@ -10,7 +10,7 @@
 	DO NOT change this file
 	Copy it to <application>/app/views/ and modify it there
 	*/	?>
-	<nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-md py-1" role="navigation" >
+	<nav class="navbar sticky-top navbar-dark bg-dark navbar-expand-md py-1" role="navigation" >
 		<div class="navbar-header" >
 			<?php printf( '<a href="%s" class="navbar-brand text-white" >%s</a>', \url::$URL, $this->data->title);	?>
 
@@ -29,14 +29,20 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
 					<a href="https://mail.brayworth.com.au/webmail/" target="_blank" class="nav-link text-white">webmail</a>
+
 				</li>
+
 				<li class="nav-item active">
-					<a href="#about" class="nav-link text-white">about</a>
+					<a href="<?php url::write( '#about'); ?>" class="nav-link text-white">about</a>
+
 				</li>
+
 <?php if ( userAgent::isLegit()) {	?>
 				<li class="nav-item active">
-					<a href="#contact" class="nav-link text-white">contact</a>
+					<a href="<?php url::write( '#contact'); ?>" class="nav-link text-white">contact</a>
+
 				</li>
+
 <?php }	?>
 
 			</ul>

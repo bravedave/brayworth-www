@@ -67,16 +67,16 @@ class home extends Controller {
 
 			$this->load('home-18');
 			$this->load('home-18-about');
-			if ( userAgent::isLegit())
+			if ( userAgent::isLegit()) {
 				$this->load('home-18-contact');
+				
+			}
 
 	}
 
 	public function index( $option = '') {
-		if ( $this->isPost())
-			$this->postHandler();
-
-		else
+		$this->isPost() ?
+			$this->postHandler() :
 			$this->__index( $option);
 
 	}
@@ -91,6 +91,17 @@ class home extends Controller {
 			'&days=3';
 
 		Response::redirect( $target );
+
+	}
+
+	public function privacy() {
+		$p = new page;
+			$p->css[] = sprintf( '<link rel="canonical" href="%s" />', url::tostring('privacy'));
+			$p
+				->header()
+				->title('navbar-18');
+
+			$this->load('privacy');
 
 	}
 
