@@ -13,34 +13,42 @@ class home extends Controller {
 
 	protected function postHandler() {
 		$action = $this->getPost( 'action');
-		if ( $action == 'Submit' ) {
-			$riddle = $this->getPost('riddle');
-			$mathCheck = $this->getPost('mathCheck');
-			if ( (int)$riddle && (int)$mathCheck && (int)$riddle == (int)$mathCheck) {
-				$contactName = $this->getPost('contactName');
-				$email = $this->getPost('email');
-				$comments = sprintf( '%s%s%sIP : %s',
+		if ( 'Submit' == $action) {
+			$soz = $this->getPost('soz');
+			if ( '' == $soz) {
+				$riddle = $this->getPost('riddle');
+				$mathCheck = $this->getPost('mathCheck');
+				if ( (int)$riddle && (int)$riddle < 20 && (int)$mathCheck && (int)$riddle == (int)$mathCheck) {
+					$contactName = $this->getPost('contactName');
+					$email = $this->getPost('email');
+					$comments = sprintf( '%s%s%sIP : %s',
 					$this->getPost('comments'),
 					PHP_EOL, PHP_EOL,
 					$this->Request->getRemoteIP());
 
-				$sendCopy = $this->getPost('sendCopy');
+					$sendCopy = $this->getPost('sendCopy');
 
-				$mail = sys::mailer();
+					$mail = sys::mailer();
 					$mail->addReplyTo( $email, $contactName );
 					$mail->AddAddress( config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
 					$mail->Subject = sprintf( '%s Contact : %s', config::$WEBNAME, $contactName);
 					$mail->MsgHTML( sys::text2html( $comments ));
 
-				if ( $sendCopy == 'true' )
+					if ( $sendCopy == 'true' )
 					$mail->AddCC( $email, $contactName );
 
-				Response::redirect( $mail->Send() ? url::tostring( 'success' ) : url::tostring( 'failure/?err=' . urlencode( $mail->ErrorInfo)));
+					Response::redirect( $mail->Send() ? url::tostring( 'success' ) : url::tostring( 'failure/?err=' . urlencode( $mail->ErrorInfo)));
+
+				}
+				else {
+					print 'you did not successfully use this web site';
+					// throw new Exceptions\CaptchaRequired;
+
+				}
 
 			}
 			else {
-				print 'you did not successfully use this web site';
-				// throw new Exceptions\CaptchaRequired;
+				throw new Exceptions\soz;
 
 			}
 
@@ -69,7 +77,7 @@ class home extends Controller {
 			$this->load('home-18-about');
 			if ( userAgent::isLegit()) {
 				$this->load('home-18-contact');
-				
+
 			}
 
 	}

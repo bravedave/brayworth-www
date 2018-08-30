@@ -30,6 +30,7 @@
 
 	<form method="POST" id="mailform" action="<?php print url::$URL ?>">
 		<input type="hidden" name="riddle" id="riddle" value="<?php print $a+$b ?>" />
+		<input type="hidden" name="soz" value="" />
 
 		<div class="form-group row">
 			<label class="control-label col-sm-3" for="contactName">Name</label>
