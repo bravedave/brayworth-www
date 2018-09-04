@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 	David Bray
 	BrayWorth Pty Ltd
 	e. david@brayworth.com.au
@@ -11,6 +11,18 @@
 class home extends Controller {
 	public $RequireValidation = FALSE;
 
+	protected function _russian( $s) {
+		$len = strlen( trim( $s, ' ?.,!'));
+		if ( $len > 0) {
+			$res = preg_match_all( '/[А-Яа-яЁё]/u', $s);
+			return round($res / $len, 2);
+
+		}
+
+		return ( $len);
+
+	}
+
 	protected function postHandler() {
 		$action = $this->getPost( 'action');
 		if ( 'Submit' == $action) {
@@ -19,12 +31,20 @@ class home extends Controller {
 				$riddle = $this->getPost('riddle');
 				$mathCheck = $this->getPost('mathCheck');
 				if ( (int)$riddle && (int)$riddle < 20 && (int)$mathCheck && (int)$riddle == (int)$mathCheck) {
+
+					$_comments = $this->getPost('comments');
+					/*--- ---[ruskies]--- ---*/
+					$pr = $this->_russian( $_comments);
+					/*--- ---[ruskies]--- ---*/
+
 					$contactName = $this->getPost('contactName');
 					$email = $this->getPost('email');
-					$comments = sprintf( '%s%s%sIP : %s',
-					$this->getPost('comments'),
-					PHP_EOL, PHP_EOL,
-					$this->Request->getRemoteIP());
+
+					$comments = sprintf( '%s%s%sIP : %s', $_comments, PHP_EOL, PHP_EOL, $this->Request->getRemoteIP());
+					if ( $pr > .3) {
+						$comments .= sprintf('%s%s russian', PHP_EOL, $pr * 100);
+
+					}
 
 					$sendCopy = $this->getPost('sendCopy');
 
