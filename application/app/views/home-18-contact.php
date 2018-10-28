@@ -20,7 +20,7 @@
 		<div class="offset-sm-6 col-sm-6">
 			<strong>Gold Coast, Q. Australia</strong><br />
 			PO Box 292 Tugun, Q 4224<br />
-			t. 07 5641 1601
+			t. 0418 745334
 
 		</div>
 
