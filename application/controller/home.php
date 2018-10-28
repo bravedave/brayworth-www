@@ -45,6 +45,7 @@ class home extends Controller {
 						$comments .= sprintf('%s%s russian', PHP_EOL, $pr * 100);
 
 					}
+					$comments .= sprintf('%suserAgent: %s', PHP_EOL, \userAgent::toString());
 
 					$sendCopy = $this->getPost('sendCopy');
 
