@@ -80,6 +80,11 @@ class home extends Controller {
 	public function __index( $option = '') {
 		$p = new page;
 			$p->css[] = sprintf( '<link rel="canonical" href="%s" />', url::$URL);
+			if ( \config::$captcha) {
+				$p->scripts[] = '<script src="https://www.google.com/recaptcha/api.js?render=6Le2OXgUAAAAAJlZnzozDmuZeI2B-mbmJKqABvq3"></script>';
+
+			}
+
 			$p
 				->header()
 				->title('navbar-18');
@@ -98,6 +103,10 @@ class home extends Controller {
 			$this->load('home-18-about');
 			if ( userAgent::isLegit()) {
 				$this->load('home-18-contact');
+
+			}
+			if ( \config::$captcha) {
+				$this->load('captcha');
 
 			}
 
