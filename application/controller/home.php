@@ -76,7 +76,7 @@ class home extends Controller {
 		}
 		elseif ( 'verify-captcha' == $action) {
 			if ( \config::$captcha) {
-				sys::logger( $action);
+				// sys::logger( $action);
 				if ( $token = $this->getPost('token')) {
 					$req = new \HttpPost('https://www.google.com/recaptcha/api/siteverify');
 					$req->setPostData([
@@ -86,7 +86,7 @@ class home extends Controller {
 					]);
 
 					$req->send();
-					\Json::ack( $action)->add('data', $req->getResponse());
+					\Json::ack( $action)->add('data', $req->getResponseDecoded());
 
 				} else { \Json::nak( sprintf('%s - no token', $action)); }
 
