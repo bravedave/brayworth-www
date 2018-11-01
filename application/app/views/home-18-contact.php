@@ -30,6 +30,7 @@
 
 	<form method="POST" id="mailform" action="<?php print url::$URL ?>">
 		<input type="hidden" name="riddle" id="riddle" value="<?php print $a+$b ?>" />
+		<input type="hidden" name="mathCheck" id="mathCheck" value="<?php print $a+$b ?>" />
 		<input type="hidden" name="soz" value="" />
 
 		<div class="form-group row">
@@ -72,6 +73,8 @@
 
 		</div><!-- div class="form-group row" -->
 
+		<?php if ( false) {	?>
+
 		<div class="form-group row">
 			<label class="control-label col-sm-3" for="mathCheck"><?php printf( 'Solve: %s + %s', $a, $b ) ?></label>
 			<div class="col-sm-4">
@@ -80,6 +83,8 @@
 			</div>
 
 		</div><!-- div class="form-group row" -->
+
+		<?php }	?>
 
 		<div class="form-group row">
 			<div class="offset-sm-3 col-sm-2">
@@ -107,6 +112,7 @@ $(document).ready( function() {
 		}
 		$('#email').closest('div.form-group').removeClass('alert').removeClass('alert-warning')
 
+		<?php if ( false) {	?>
 		var v = $('#mathCheck').val()
 		if ( v == '' || isNaN(v)) {
 			$('#mathCheck').closest('div.form-group').addClass('alert').addClass('alert-warning')
@@ -122,6 +128,7 @@ $(document).ready( function() {
 
 		}
 		$('#mathCheck').closest('div.form-group').removeClass('alert').removeClass('alert-warning')
+		<?php }	?>
 
 		return ( true );
 

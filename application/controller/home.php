@@ -27,7 +27,7 @@ class home extends Controller {
 		$action = $this->getPost( 'action');
 		if ( 'Submit' == $action) {
 			$soz = $this->getPost('soz');
-			if ( '' == $soz) {
+			if ( 'accepted' == $soz) {
 				$riddle = $this->getPost('riddle');
 				$mathCheck = $this->getPost('mathCheck');
 				if ( (int)$riddle && (int)$riddle < 20 && (int)$mathCheck && (int)$riddle == (int)$mathCheck) {
