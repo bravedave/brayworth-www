@@ -87,7 +87,9 @@ class home extends Controller {
 
 					$req->send();
 					if ($response = $req->getResponse()) {
-						\Json::ack( $action)->add('data', @json_decode( $response));
+						\Json::ack( $action)
+						->add('data', @json_decode( $response))
+						->add('soz','accepted');
 
 					} else { \Json::nak( sprintf('%s - bad response', $action)); }
 
