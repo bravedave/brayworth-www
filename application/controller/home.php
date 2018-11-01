@@ -105,8 +105,25 @@ class home extends Controller {
 				$this->load('home-18-contact');
 
 			}
+
 			if ( \config::$captcha) {
 				$this->load('captcha');
+
+			}
+			else {
+				$path = sprintf('%srecaptcha.json',  \config::dataPath());
+				sys::logger( sprintf('no captcha : %s', $path));
+				// if ( file_exists( $path)) {
+				// 	$a = json_decode( file_get_contents( $path));
+				// 	if ( isset( $a->public)) {
+				// 		\config::$captcha = (object)[
+				// 			'public' => $a->public,
+				// 			'private' => $a->private
+				// 		];
+				//
+				// 	} // if ( isset( $a->web))
+				//
+				// } // if ( file_exists( $path))
 
 			}
 
