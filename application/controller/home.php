@@ -74,6 +74,24 @@ class home extends Controller {
 			}
 
 		}
+		elseif ( 'verify-captcha' == $action) {
+			if ( \config::$captcha) {
+				if ( $token = $this->getPost('token')) {
+					$req = new \HttpPost('https://www.google.com/recaptcha/api/siteverify');
+					$req->setPostData([
+						'secret' => \config::$captcha->private,
+						'response' => $token
+
+					]);
+
+					$req->send();
+					\Json::ack( $action)->add('data', $req->getResponse());
+
+				} else { \Json::nak($action); }
+
+			} else { \Json::nak($action); }
+
+		}
 
 	}
 
@@ -108,22 +126,6 @@ class home extends Controller {
 
 			if ( \config::$captcha) {
 				$this->load('captcha');
-
-			}
-			else {
-				$path = sprintf('%srecaptcha.json',  \config::dataPath());
-				sys::logger( sprintf('no captcha : %s', $path));
-				// if ( file_exists( $path)) {
-				// 	$a = json_decode( file_get_contents( $path));
-				// 	if ( isset( $a->public)) {
-				// 		\config::$captcha = (object)[
-				// 			'public' => $a->public,
-				// 			'private' => $a->private
-				// 		];
-				//
-				// 	} // if ( isset( $a->web))
-				//
-				// } // if ( file_exists( $path))
 
 			}
 

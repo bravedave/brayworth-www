@@ -12,7 +12,21 @@
   grecaptcha.ready( function() {
     grecaptcha.execute('<?php print \config::$captcha->public ?>', {action: 'homepage'}).then(function(token) {
       // Verify the token on the server.
-      console.log( token);
+      _brayworth_.post({
+        url : _brayworth_.url('/'),
+        data : {
+          action : 'verify-captcha',
+          token : token;
+
+        }
+
+      }).then( function(d) {
+        if ( 'ack' == d.response) {
+          console.log( d);
+
+        }
+
+      })
 
     });
 
