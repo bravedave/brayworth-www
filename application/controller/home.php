@@ -86,7 +86,10 @@ class home extends Controller {
 					]);
 
 					$req->send();
-					\Json::ack( $action)->add('data', $req->getResponseDecoded());
+					if ($response = $req->getResponse()) {
+						\Json::ack( $action)->add('data', @json_decode( $response));
+
+					} else { \Json::nak( sprintf('%s - bad response', $action)); }
 
 				} else { \Json::nak( sprintf('%s - no token', $action)); }
 
