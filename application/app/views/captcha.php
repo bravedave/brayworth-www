@@ -21,8 +21,9 @@
         }
 
       }).then( function(d) {
+        console.log( d);
         if ( 'ack' == d.response) {
-          console.log( d);
+          // console.log( d);
 
         }
 
