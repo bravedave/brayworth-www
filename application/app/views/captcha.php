@@ -16,7 +16,7 @@
         url : _brayworth_.url('/'),
         data : {
           action : 'verify-captcha',
-          token : token;
+          token : token
 
         }
 
