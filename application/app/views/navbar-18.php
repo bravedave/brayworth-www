@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 	David Bray
 	BrayWorth Pty Ltd
 	e. david@brayworth.com.au
@@ -27,18 +27,18 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
+				<li class="nav-item">
 					<a href="https://mail.brayworth.com.au/webmail/" target="_blank" class="nav-link text-white">webmail</a>
 
 				</li>
 
-				<li class="nav-item active">
+				<li class="nav-item">
 					<a href="<?php url::write( '#about'); ?>" class="nav-link text-white">about</a>
 
 				</li>
 
 <?php if ( userAgent::isLegit()) {	?>
-				<li class="nav-item active">
+				<li class="nav-item d-none" id="contactNAV">
 					<a href="<?php url::write( '#contact'); ?>" class="nav-link text-white">contact</a>
 
 				</li>
