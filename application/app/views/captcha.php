@@ -24,7 +24,7 @@
           if ( d.data.success) {
             $('input[name="soz"]').val( d.soz);
             $('#contact, #contactNAV').removeClass('d-none');
-            // console.log( d);
+            /// console.log( d);
 
           }
 
