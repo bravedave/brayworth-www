@@ -87,6 +87,7 @@ class home extends Controller {
 
 					$req->send();
 					if ($response = $req->getResponse()) {
+						sys::logger( sprintf('%s :: %s', $action, $response));
 						\Json::ack( $action)
 						->add('data', @json_decode( $response))
 						->add('soz','accepted');
