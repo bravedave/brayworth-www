@@ -37,13 +37,10 @@
 
 				</li>
 
-<?php if ( userAgent::isLegit()) {	?>
 				<li class="nav-item d-none" id="contactNAV">
 					<a href="<?php url::write( '#contact'); ?>" class="nav-link text-white">contact</a>
 
 				</li>
-
-<?php }	?>
 
 			</ul>
 

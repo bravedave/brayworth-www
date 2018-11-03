@@ -87,7 +87,7 @@ class home extends Controller {
 
 					$req->send();
 					if ($response = $req->getResponse()) {
-						sys::logger( sprintf('%s :: %s', $action, $response));
+						// sys::logger( sprintf('%s :: %s', $action, $response));
 						\Json::ack( $action)
 						->add('data', @json_decode( $response))
 						->add('soz','accepted');
@@ -130,10 +130,7 @@ class home extends Controller {
 
 			$this->load('home-18');
 			$this->load('home-18-about');
-			if ( userAgent::isLegit()) {
-				$this->load('home-18-contact');
-
-			}
+			$this->load('home-18-contact');
 
 			if ( \config::$captcha) {
 				$this->load('captcha');
