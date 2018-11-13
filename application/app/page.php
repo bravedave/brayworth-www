@@ -1,5 +1,5 @@
 <?php
-/**
+/*
 	David Bray
 	BrayWorth Pty Ltd
 	e. david@brayworth.com.au
@@ -8,7 +8,7 @@
 		http://creativecommons.org/licenses/by/4.0/
 
 	*/
-class page extends dvc\pages\bootstrap {
+class page extends dvc\pages\bootstrap4 {
 	function __construct( $title = '' ) {
 		parent::__construct( $title );
 

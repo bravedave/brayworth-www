@@ -14,11 +14,9 @@ abstract class config extends _config {
 	static $WEBNAME = 'Brayworth Web Design';
 	static $SUPPORT_NAME = 'David Bray';
 	static $SUPPORT_EMAIL = 'david@brayworth.com.au';
-	static $EMAIL_ERRORS_TO_SUPPORT = TRUE;
+	static $EMAIL_ERRORS_TO_SUPPORT = true;
 	//~ static $MAILSERVER = 'mail';
 
 	static $TIMEZONE = 'Australia/Brisbane';
 
 }
-
-pages\bootstrap::$BootStrap_Version = '4';
