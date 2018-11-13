@@ -68,10 +68,10 @@ class home extends Controller {
 				}
 
 			}
-			else {
-				throw new Exceptions\soz;
-
-			}
+			// else {
+			// 	throw new Exceptions\soz;
+			//
+			// }
 
 		}
 		elseif ( 'verify-captcha' == $action) {
