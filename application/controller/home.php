@@ -28,42 +28,76 @@ class home extends Controller {
 		if ( 'Submit' == $action) {
 			$soz = $this->getPost('soz');
 			if ( 'accepted' == $soz) {
-				$riddle = $this->getPost('riddle');
-				$mathCheck = $this->getPost('mathCheck');
-				if ( (int)$riddle && (int)$riddle < 20 && (int)$mathCheck && (int)$riddle == (int)$mathCheck) {
+				$_comments = $this->getPost('comments');
+				/*--- ---[ruskies]--- ---*/
+				$pr = $this->_russian( $_comments);
+				/*--- ---[ruskies]--- ---*/
 
-					$_comments = $this->getPost('comments');
-					/*--- ---[ruskies]--- ---*/
-					$pr = $this->_russian( $_comments);
-					/*--- ---[ruskies]--- ---*/
+				$contactName = $this->getPost('contactName');
+				$email = $this->getPost('email');
 
-					$contactName = $this->getPost('contactName');
-					$email = $this->getPost('email');
+				$comments = sprintf( '%s%s%sIP : %s', $_comments, PHP_EOL, PHP_EOL, $this->Request->getRemoteIP());
+				if ( $pr > .3) {
+					$comments .= sprintf('%s%s russian', PHP_EOL, $pr * 100);
 
-					$comments = sprintf( '%s%s%sIP : %s', $_comments, PHP_EOL, PHP_EOL, $this->Request->getRemoteIP());
-					if ( $pr > .3) {
-						$comments .= sprintf('%s%s russian', PHP_EOL, $pr * 100);
+				}
+				$comments .= sprintf('%suserAgent: %s', PHP_EOL, \userAgent::toString());
 
-					}
-					$comments .= sprintf('%suserAgent: %s', PHP_EOL, \userAgent::toString());
+				$sendCopy = $this->getPost('sendCopy');
 
-					$sendCopy = $this->getPost('sendCopy');
+				$mail = sys::mailer();
+				$mail->addReplyTo( $email, $contactName );
+				$mail->AddAddress( config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
+				$mail->Subject = sprintf( '%s Contact : %s', config::$WEBNAME, $contactName);
+				$mail->MsgHTML( sys::text2html( $comments ));
 
-					$mail = sys::mailer();
-					$mail->addReplyTo( $email, $contactName );
-					$mail->AddAddress( config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
-					$mail->Subject = sprintf( '%s Contact : %s', config::$WEBNAME, $contactName);
-					$mail->MsgHTML( sys::text2html( $comments ));
+				if ( $sendCopy == 'true' )
+				$mail->AddCC( $email, $contactName );
 
-					if ( $sendCopy == 'true' )
-					$mail->AddCC( $email, $contactName );
+				Response::redirect( $mail->Send() ? url::tostring( 'success' ) : url::tostring( 'failure/?err=' . urlencode( $mail->ErrorInfo)));
 
-					Response::redirect( $mail->Send() ? url::tostring( 'success' ) : url::tostring( 'failure/?err=' . urlencode( $mail->ErrorInfo)));
+			}
+			// else {
+			// 	throw new Exceptions\soz;
+			//
+			// }
+
+		}
+		elseif ( 'send-message' == $action) {
+			$soz = $this->getPost('soz');
+			if ( 'accepted' == $soz) {
+				$_comments = $this->getPost('comments');
+				/*--- ---[ruskies]--- ---*/
+				$pr = $this->_russian( $_comments);
+				/*--- ---[ruskies]--- ---*/
+
+				$contactName = $this->getPost('contactName');
+				$email = $this->getPost('email');
+
+				$comments = sprintf( '%s%s%sIP : %s', $_comments, PHP_EOL, PHP_EOL, $this->Request->getRemoteIP());
+				if ( $pr > .3) {
+					$comments .= sprintf('%s%s russian', PHP_EOL, $pr * 100);
+
+				}
+				$comments .= sprintf('%suserAgent: %s', PHP_EOL, \userAgent::toString());
+
+				$sendCopy = $this->getPost('sendCopy');
+
+				$mail = sys::mailer();
+				$mail->addReplyTo( $email, $contactName );
+				$mail->AddAddress( config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
+				$mail->Subject = sprintf( '%s Contact : %s', config::$WEBNAME, $contactName);
+				$mail->MsgHTML( sys::text2html( $comments ));
+
+				if ( $sendCopy == 'true' )
+				$mail->AddCC( $email, $contactName );
+
+				if ( $mail->Send()) {
+					\Json::ack( $action);
 
 				}
 				else {
-					print 'you did not successfully use this web site';
-					// throw new Exceptions\CaptchaRequired;
+					\Json::nak( $mail->ErrorInfo);
 
 				}
 
