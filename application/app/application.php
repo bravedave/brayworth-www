@@ -17,11 +17,4 @@ class application extends dvc\application {
 
 	}
 
-	public function getRootPath() {
-		return isset( $this )  ?
-			$this->rootPath :
-			self::app()->getRootPath();
-
-	}
-
 }
