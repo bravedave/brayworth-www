@@ -58,7 +58,7 @@ class home extends Controller {
 				$mail->MsgHTML( sys::text2html( $comments ));
 
 				if ( $sendCopy == 'true' )
-				$mail->AddCC( $email, $contactName );
+					$mail->AddCC( $email, $contactName );
 
 				Response::redirect( $mail->Send() ? url::tostring( 'success' ) : url::tostring( 'failure/?err=' . urlencode( $mail->ErrorInfo)));
 
@@ -87,7 +87,7 @@ class home extends Controller {
 				}
 				$comments .= sprintf('%suserAgent: %s', PHP_EOL, \userAgent::toString());
 
-				$sendCopy = $this->getPost('sendCopy');
+				$sendCopy = ( 'yes' == $this->getPost('sendCopy'));
 
 				$mail = sys::mailer();
 				$mail->addReplyTo( $email, $contactName );
@@ -95,8 +95,10 @@ class home extends Controller {
 				$mail->Subject = sprintf( '%s Contact : %s', config::$WEBNAME, $contactName);
 				$mail->MsgHTML( sys::text2html( $comments ));
 
-				if ( $sendCopy == 'true' )
-				$mail->AddCC( $email, $contactName );
+				if ( $sendCopy) {
+					$mail->AddCC( $email, $contactName );
+
+				}
 
 				if ( $mail->Send()) {
 					\Json::ack( $action);
