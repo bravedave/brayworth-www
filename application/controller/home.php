@@ -10,7 +10,6 @@
 	*/
 class home extends Controller {
 	public $RequireValidation = false;
-	protected $manifest = null;
 
 	protected function _russian( $s) {
 		$len = strlen( trim( $s, ' ?.,!'));
