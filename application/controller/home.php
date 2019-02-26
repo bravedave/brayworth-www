@@ -9,7 +9,8 @@
 
 	*/
 class home extends Controller {
-	public $RequireValidation = FALSE;
+	public $RequireValidation = false;
+	protected $manifest = null;
 
 	protected function _russian( $s) {
 		$len = strlen( trim( $s, ' ?.,!'));
@@ -20,6 +21,11 @@ class home extends Controller {
 		}
 
 		return ( $len);
+
+	}
+
+	protected function before() {
+		$this->manifest = realpath( sprintf( '%s/react', application::getRootPath()));
 
 	}
 
@@ -110,7 +116,6 @@ class home extends Controller {
 		}
 		elseif ( 'verify-captcha' == $action) {
 			if ( \config::$captcha) {
-				// sys::logger( $action);
 				if ( $token = $this->getPost('token')) {
 					$req = new \HttpPost('https://www.google.com/recaptcha/api/siteverify');
 					$req->setPostData([
@@ -120,7 +125,7 @@ class home extends Controller {
 					]);
 
 					$req->send();
-					if ($response = $req->getResponse()) {
+					if ( $response = $req->getResponse()) {
 						// sys::logger( sprintf('%s :: %s', $action, $response));
 						\Json::ack( $action)
 						->add('data', @json_decode( $response))
@@ -140,7 +145,7 @@ class home extends Controller {
 
 	}
 
-	public function __index( $option = '') {
+	protected function _index( $option = '') {
 		$p = new page;
 			$p->css[] = sprintf( '<link rel="canonical" href="%s" />', url::$URL);
 			if ( \config::$captcha) {
@@ -170,13 +175,6 @@ class home extends Controller {
 				$this->load('captcha');
 
 			}
-
-	}
-
-	public function index( $option = '') {
-		$this->isPost() ?
-			$this->postHandler() :
-			$this->__index( $option);
 
 	}
 

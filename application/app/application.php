@@ -10,10 +10,17 @@
 	*/
 
 class application extends dvc\application {
-	private $_settings = FALSE;
+	private $_settings = false;
 
 	static function run() {
 		$app = new application( dirname( __FILE__ ) . '/../' );
+
+	}
+
+	public function getRootPath() {
+		return isset( $this )  ?
+			$this->rootPath :
+			self::app()->getRootPath();
 
 	}
 

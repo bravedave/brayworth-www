@@ -9,31 +9,31 @@
 
 	*/	?>
 <script>
-  grecaptcha.ready( function() {
-    grecaptcha.execute('<?php print \config::$captcha->public ?>', {action: 'homepage'}).then(function(token) {
-      _brayworth_.post({
-        url : _brayworth_.url(),
-        data : {
-          action : 'verify-captcha',
-          token : token
+grecaptcha.ready( function() {
+	grecaptcha.execute('<?php print \config::$captcha->public ?>', {action: 'homepage'}).then(function(token) {
+		//~ console.log( token);
+		_brayworth_.post({
+			url : _brayworth_.url(),
+			data : {
+				action : 'verify-captcha',
+				token : token
 
-        }
+			}
 
-      }).then( function(d) {
-        if ( 'ack' == d.response) {
-          if ( d.data.success) {
-            $('input[name="soz"]').val( d.soz);
-            $('#contact, #contactNAV').removeClass('d-none');
-            /// console.log( d);
+		}).then( function(d) {
+			console.log( d);
+			if ( 'ack' == d.response) {
+				if ( d.data.success) {
+					$('input[name="soz"]').val( d.soz);
+					$('#contact, #contactNAV').removeClass('d-none');
 
-          }
+				}
 
-        }
+			}
 
-      });
+		});
 
-    });
+	});
 
-  });
-
+});
 </script>
