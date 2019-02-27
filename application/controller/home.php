@@ -24,7 +24,7 @@ class home extends Controller {
 	}
 
 	protected function before() {
-		$this->manifest = realpath( sprintf( '%s/react', application::getRootPath()));
+		//~ $this->manifest = realpath( sprintf( '%s/react', application::getRootPath()));
 
 	}
 
