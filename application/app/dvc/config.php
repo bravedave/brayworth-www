@@ -8,9 +8,11 @@
 		http://creativecommons.org/licenses/by/4.0/
 
 	*/
-NameSpace dvc;
+namespace dvc;
 
 abstract class config extends _config {
+	static $DB_TYPE = 'disabled';	// needs to be mysql or sqlite to run
+
 	static $WEBNAME = 'Brayworth Web Design';
 	static $SUPPORT_NAME = 'David Bray';
 	static $SUPPORT_EMAIL = 'david@brayworth.com.au';
