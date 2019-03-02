@@ -11,7 +11,7 @@
 namespace dvc;
 
 abstract class config extends _config {
-	static $DB_TYPE = 'disabled';	// needs to be mysql or sqlite to run
+	static $DB_TYPE = 'sqlite';	// needs to be mysql or sqlite to run
 
 	static $WEBNAME = 'Brayworth Web Design';
 	static $SUPPORT_NAME = 'David Bray';

@@ -179,6 +179,50 @@ class home extends Controller {
 
 	}
 
+	public function checkin() {
+		if ( $key = $this->getParam('api')) {
+			
+			if ( $locale = $this->getParam('locale')) {
+				
+				if ( $event = $this->getParam('event')) {
+					
+					$dao = new dao\users;
+					if ( $user = $dao->getUserByKey( $key )) {
+						
+						// $j = new dvc\Json();
+						// $daoLocale = new dao\locale( $user);
+						// if ( $localeDTO = $daoLocale->getLocale( $locale )) {
+
+						// 	$a = array(
+						// 		'date' => dvc\db::dbTimeStamp(),
+						// 		'event' => $event,
+						// 		'locale_id' => $localeDTO->id,
+						// 		'remote_addr' => $this->Request->getServer( 'REMOTE_ADDR' ));
+
+						// 	//~ phpinfo();
+						// 	//~ sys::dump( $a );
+
+						// 	$daoEvent = new dao\event( $user);
+						// 	$daoEvent->Insert( $a );
+						// 	$daoEvent->purge( $localeDTO->id );
+
+						// 	$j->add( 'response', 'ack' );
+						// 	//~ $j->add( 'a', $a);
+
+						// }
+						// else
+						// 	$j->add( 'response', 'nAK' );
+
+					} else { \Json::nak( 'checkin' ); }
+
+				} else { \Json::nak( 'checkin::event' ); }
+
+			} else { \Json::nak( 'checkin::locale' ); }
+
+		} else { \Json::nak( 'checkin' ); }
+
+	}
+
 	public function tides() {
 		$target = 'http://www.bom.gov.au/australia/tides/print.php' .
 			'?aac=QLD_TP011' .
