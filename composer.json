@@ -17,6 +17,7 @@
 		}
 	],
 	"require": {
-		"bravedave/dvc": "dev-master"
+		"bravedave/dvc": "dev-master",
+		"google/apiclient": "^2.0@dev"
 	}
 }
