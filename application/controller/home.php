@@ -223,6 +223,21 @@ class home extends Controller {
 
 	}
 
+	public function dbinfo() {
+		if ( currentUser::isProgrammer()) {
+			$this->render([
+				'title' => 'dbinfo',
+				'primary' => 'db-info',
+				'secondary' => 'index']);
+
+		}
+		else {
+			$this->_index();
+
+		}
+
+	}
+
 	public function tides() {
 		$target = 'http://www.bom.gov.au/australia/tides/print.php' .
 			'?aac=QLD_TP011' .

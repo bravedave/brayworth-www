@@ -22,7 +22,7 @@ class users extends _dao {
 	protected function checkPrefix( dto\users &$dto ) {
 		if ( $dto->db_prefix == '' ) {
 			$dto->db_prefix = 'D' . str_pad( $dto->id, 4, '0', STR_PAD_LEFT );
-			$this->db->Update( 'users', array( 'db_prefix' => $dto->db_prefix ), 'where id = ' . $dto->id );
+			$this->UpdateByID( [ 'db_prefix' => $dto->db_prefix ], $dto->id);
 
 		}
 
@@ -31,7 +31,7 @@ class users extends _dao {
 	protected function checkKey( dto\users &$dto ) {
 		if ( $dto->key == '' ) {
 			$dto->key = hash( 'md5', (string)time() . (string)$dto->id );
-			$this->db->Update( 'users', array( 'key' => $dto->key ), 'where id = ' . $dto->id );
+			$this->UpdateByID( [ 'key' => $dto->key ], $dto->id);
 
 		}
 
@@ -45,17 +45,21 @@ class users extends _dao {
 			//~ sys::dump( $dto );
 			if ( date( 'Y-m-d', strtotime( $dtoPP->verify_date )) == date( 'Y-m-d') && $dtoPP->verify_status == 'Active' ) {
 				//~ sys::dump( $dtoPP);
-				return ( TRUE );
+				return ( true );
+				
 			}
 
 			$ppAuth = sys::paypalAuth();	// Namespace dao
 			if ( $pp = \paypal\api::GetRecurringPaymentsProfileDetails( $ppAuth, $dtoPP->profileid)) {
 				if ( $pp->status() == 'Active' ) {
-					$a = array(
+					$a = [
 						'verify_date' => \dvc\db::dbTimeStamp(),
-						'verify_status' => 'Active' );
-					$daoPP->Update( $a, 'where id = ' . $dtoPP->id );
-					return  ( TRUE );
+						'verify_status' => 'Active' 
+
+					];
+
+					$daoPP->UpdateByID( $a, $dtoPP->id );
+					return  ( true );
 
 				}
 
