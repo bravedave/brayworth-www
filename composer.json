@@ -5,6 +5,7 @@
 	"homepage": "http://brayworth.com",
 	"type": "project",
 	"license": "MIT",
+	"prefer-stable": true,
 	"authors": [{
 		"name": "Brave Dave",
 		"email": "davbray@gmail.com",
