@@ -1,16 +1,15 @@
 <?php
 /*
-	David Bray
-	BrayWorth Pty Ltd
-	e. david@brayworth.com.au
+ * David Bray
+ * BrayWorth Pty Ltd
+ * e. david@brayworth.com.au
+ *
+ * This work is licensed under a Creative Commons Attribution 4.0 International Public License.
+ *      http://creativecommons.org/licenses/by/4.0/
+ *
+*/
 
-	This work is licensed under a Creative Commons Attribution 4.0 International Public License.
-		http://creativecommons.org/licenses/by/4.0/
-
-	*/
-namespace dvc;
-
-abstract class config extends _config {
+abstract class config extends dvc\config {
 	static $DB_TYPE = 'sqlite';	// needs to be mysql or sqlite to run
 
 	static $WEBNAME = 'Brayworth Web Design';
