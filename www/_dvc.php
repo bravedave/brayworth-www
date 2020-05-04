@@ -1,14 +1,11 @@
 <?php
-/**
-	David Bray
-	BrayWorth Pty Ltd
-	e. david@brayworth.com.au
-
-	This work is licensed under a Creative Commons Attribution 4.0 International Public License.
-		http://creativecommons.org/licenses/by/4.0/
-
-	Credits:
-		* A simple PHP MVC skeleton :: https://github.com/panique/php-mvc/
+/*
+ * David Bray
+ * BrayWorth Pty Ltd
+ * e. david@brayworth.com.au
+ *
+ * MIT License
+ *
 
 	You can use php's built in server
 	php -S localhost:80 -c  c:\php\php.ini-development  index.php

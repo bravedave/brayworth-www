@@ -1,13 +1,13 @@
 <?php
 /*
-	David Bray
-	BrayWorth Pty Ltd
-	e. david@brayworth.com.au
+ * David Bray
+ * BrayWorth Pty Ltd
+ * e. david@brayworth.com.au
+ *
+ * MIT License
+ *
+*/
 
-	This work is licensed under a Creative Commons Attribution 4.0 International Public License.
-		http://creativecommons.org/licenses/by/4.0/
-
-	*/
 class home extends Controller {
 	public $RequireValidation = false;
 
@@ -20,11 +20,6 @@ class home extends Controller {
 		}
 
 		return ( $len);
-
-	}
-
-	protected function before() {
-		$this->manifest = realpath( sprintf( '%s/react', application::getRootPath()));
 
 	}
 
@@ -146,49 +141,22 @@ class home extends Controller {
 
 	}
 
-	protected function _index( $option = '') {
-		$p = new page;
-			$p->css[] = sprintf( '<link rel="canonical" href="%s" />', url::$URL);
-			if ( \config::$captcha) {
-				$p->scripts[] = '<script src="https://www.google.com/recaptcha/api.js?render=6Le2OXgUAAAAAJlZnzozDmuZeI2B-mbmJKqABvq3"></script>';
-
-			}
-
-			$p
-				->header()
-				->title('navbar-18');
-
-			if ( $option == 'success') {
-				new dvc\html\div( 'Successfully sent message', ['class' => 'alert alert-success', 'style' => 'margin-top: 90px; margin-left: 5px; max-width: 80%;']);
-
-			}
-			elseif ( $option == 'failure') {
-				new dvc\html\div( sprintf( '<b>Failed to send message</b> %s', $this->getParam('err')),
-					['class' => 'alert alert-warning', 'style' => 'margin-top: 90px; margin-left: 5px; max-width: 80%;']);
-
-			}
-
-			$this->load('home-18');
-			$this->load('home-18-about');
-			$this->load('home-18-contact');
-
-			if ( \config::$captcha) {
-				$this->load('captcha');
-
-			}
+	protected function _index() {
+		site\www::instance()
+			->serve( $_SERVER['REQUEST_URI']);
 
 	}
 
 	public function checkin() {
 		if ( $key = $this->getParam('api')) {
-			
+
 			if ( $locale = $this->getParam('locale')) {
-				
+
 				if ( $event = $this->getParam('event')) {
-					
+
 					$dao = new dao\users;
 					if ( $user = $dao->getUserByKey( $key )) {
-						
+
 						// $j = new dvc\Json();
 						// $daoLocale = new dao\locale( $user);
 						// if ( $localeDTO = $daoLocale->getLocale( $locale )) {
@@ -224,7 +192,7 @@ class home extends Controller {
 	}
 
 	public function dbinfo() {
-		if ( currentUser::isProgrammer()) {
+		if ( currentUser::isProgrammer() || $this->Request->ServerIsLocal()) {
 			$this->render([
 				'title' => 'dbinfo',
 				'primary' => 'db-info',
@@ -232,7 +200,8 @@ class home extends Controller {
 
 		}
 		else {
-			$this->_index();
+		site\www::instance()
+			->serve( '');
 
 		}
 

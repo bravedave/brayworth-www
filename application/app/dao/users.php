@@ -1,13 +1,13 @@
 <?php
 /*
-	David Bray
-	BrayWorth Pty Ltd
-	e. david@brayworth.com.au
+ * David Bray
+ * BrayWorth Pty Ltd
+ * e. david@brayworth.com.au
+ *
+ * MIT License
+ *
+*/
 
-	This work is licensed under a Creative Commons Attribution 4.0 International Public License.
-		http://creativecommons.org/licenses/by/4.0/
-
-	*/
 namespace dao;
 
 class users extends _dao {
@@ -46,7 +46,7 @@ class users extends _dao {
 			if ( date( 'Y-m-d', strtotime( $dtoPP->verify_date )) == date( 'Y-m-d') && $dtoPP->verify_status == 'Active' ) {
 				//~ sys::dump( $dtoPP);
 				return ( true );
-				
+
 			}
 
 			$ppAuth = sys::paypalAuth();	// Namespace dao
@@ -54,7 +54,7 @@ class users extends _dao {
 				if ( $pp->status() == 'Active' ) {
 					$a = [
 						'verify_date' => \dvc\db::dbTimeStamp(),
-						'verify_status' => 'Active' 
+						'verify_status' => 'Active'
 
 					];
 
