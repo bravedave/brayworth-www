@@ -11,15 +11,13 @@
 		"email": "davbray@gmail.com",
 		"homepage": "http://brayworth.com"
 	}],
-	"repositories": [
-		{
-			"type": "git",
-			"url": "https://github.com/bravedave/brayworth-react"
-		}
-	],
 	"require": {
 		"bravedave/dvc": "dev-master",
-		"bravedave/brayworth-react":"dev-master",
 		"google/apiclient": "^2.0@dev"
+	},
+	"autoload": {
+		"psr-4": {
+			"": "application/app/"
+		}
 	}
 }

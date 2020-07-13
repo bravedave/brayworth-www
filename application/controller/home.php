@@ -141,9 +141,106 @@ class home extends Controller {
 
 	}
 
-	protected function _index() {
+	protected function _index( $option = '') {
+		// $this->_react();
+		$this->_traditional( $option);
+
+	}
+
+	protected function _react() {
 		site\www::instance()
 			->serve( $_SERVER['REQUEST_URI']);
+
+	}
+
+	protected function render( $params) {
+		$p = parent::render( $params);
+
+		if ( isset( $params['parallax'])) {
+			$this->_render( $params['parallax']);
+
+		}
+
+	}
+
+	protected function _traditional( $option = '') {
+		$render = [
+			'css' => [
+				sprintf( '<link rel="canonical" href="%s" />', url::$URL)
+
+			],
+			'parallax' => [
+				'home-18',
+				'home-18-about',
+				'home-18-contact'
+
+			],
+			'meta' => [
+				'<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />',
+				'<meta name="viewport" content="width=device-width" />'
+
+			],
+			'navbar' => 'navbar-18'
+
+		];
+
+		if ( 'success' == $option) {
+			array_unshift( $render['parallax'], 'success');
+
+		}
+		elseif ( $option == 'failure') {
+			array_unshift( $render['parallax'], 'failure');
+
+		}
+
+		if ( \config::$captcha) {
+			$render['scripts'] = [
+				'<script src="https://www.google.com/recaptcha/api.js?render=6Le2OXgUAAAAAJlZnzozDmuZeI2B-mbmJKqABvq3"></script>'
+
+			];
+
+			$render['parallax'][] = 'captcha';
+
+		}
+		else {
+			$render['parallax'][] = 'captcha-none';
+
+		}
+
+		$this->render( $render);
+
+	}
+
+	protected function _legacy( $option = '') {
+		$p = new page;
+			$p->css[] = sprintf( '<link rel="canonical" href="%s" />', url::$URL);
+			if ( \config::$captcha) {
+				$p->scripts[] = '<script src="https://www.google.com/recaptcha/api.js?render=6Le2OXgUAAAAAJlZnzozDmuZeI2B-mbmJKqABvq3"></script>';
+
+			}
+
+			$p
+				->header()
+				->title('navbar-18');
+
+			if ( $option == 'success') {
+				new dvc\html\div( 'Successfully sent message', ['class' => 'alert alert-success', 'style' => 'margin-top: 90px; margin-left: 5px; max-width: 80%;']);
+
+			}
+			elseif ( $option == 'failure') {
+				new dvc\html\div( sprintf( '<b>Failed to send message</b> %s', $this->getParam('err')),
+					['class' => 'alert alert-warning', 'style' => 'margin-top: 90px; margin-left: 5px; max-width: 80%;']);
+
+			}
+
+			$this->load('home-18');
+			$this->load('home-18-about');
+			$this->load('home-18-contact');
+
+			if ( \config::$captcha) {
+				$this->load('captcha');
+
+			}
 
 	}
 
@@ -204,6 +301,13 @@ class home extends Controller {
 			->serve( '');
 
 		}
+
+	}
+
+	public function index( $option = '') {
+		$this->isPost() ?
+			$this->postHandler() :
+			$this->_index( $option);
 
 	}
 

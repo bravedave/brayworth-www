@@ -1,15 +1,35 @@
 <?php
 /*
-	David Bray
-	BrayWorth Pty Ltd
-	e. david@brayworth.com.au
+ * David Bray
+ * BrayWorth Pty Ltd
+ * e. david@brayworth.com.au
+ *
+ * MIT License
+ *
+*/	?>
 
-	This work is licensed under a Creative Commons Attribution 4.0 International Public License.
-		http://creativecommons.org/licenses/by/4.0/
-
-	*/	?>
 <div class="container-fluid py-4 bg-white d-none" id="contact">
-	<h1 class="text-center">Contact</h1>
+	<div class="row">
+		<div class="col">
+			<div class="d-flex">
+				<h1 class="text-center flex-fill">Contact</h1>
+
+				<img src="<?= strings::url( 'images/arrow-up.svg') ?>"
+					id="<?= $_uid = strings::rand() ?>"
+					alt="up arrow" title="top of page"
+					class="up-icon pointer" />
+
+			</div>
+			<script>
+			$('#<?= $_uid ?>').on( 'click', e => {
+				$(document).trigger( 'go-top');
+
+			});
+			</script>
+
+		</div>
+
+	</div>
 
 	<div class="row">
 		<div class="offset-sm-6 col-sm-6">
