@@ -11,7 +11,6 @@
 grecaptcha.ready( () => {
 	grecaptcha.execute('<?= \config::$captcha->public ?>', {action: 'homepage'}).then(function(token) {
 		( _ => {
-			//~ console.log( token);
 			_.post({
 				url : _.url(),
 				data : {

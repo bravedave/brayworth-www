@@ -59,35 +59,12 @@
 		</div>
 
 		<div class="col-12 col-sm-6 col-md-3">
-			<div class="alert about-button-a text-center text-white">
-				HTML/CSS
-
-			</div>
-
-			<div class="alert about-button-b text-center text-white">
-				Bootstrap
-
-			</div>
-
-			<div class="alert about-button-c text-center text-white">
-				JavaScript
-
-			</div>
-
-			<div class="alert about-button-d text-center text-white">
-				PHP
-
-			</div>
-
-			<div class="alert about-button-e text-center text-white">
-				REST
-
-			</div>
-
-			<div class="alert about-button-a text-center text-white">
-				DataBase
-
-			</div>
+			<div class="alert about-button-a text-center text-white">HTML/CSS</div>
+			<div class="alert about-button-b text-center text-white">Bootstrap</div>
+			<div class="alert about-button-c text-center text-white">JavaScript</div>
+			<div class="alert about-button-d text-center text-white">PHP</div>
+			<div class="alert about-button-e text-center text-white">REST</div>
+			<div class="alert about-button-a text-center text-white">DataBase</div>
 
 		</div>
 
