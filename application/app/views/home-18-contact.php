@@ -88,7 +88,7 @@
 
 		<div class="form-group row">
 			<div class="offset-sm-3 col-sm-9">
-				<input class="btn btn-default" name="action" type="submit" value="Submit" />
+				<input class="btn btn-outline-primary" name="action" type="submit" value="Submit" />
 
 			</div>
 
