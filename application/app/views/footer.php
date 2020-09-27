@@ -8,7 +8,7 @@
  *
 */	?>
 
-<footer class="footer">
+<footer class="footer-fixed">
 	<div class="container-fluid">
 		<div class="row mb-0">
 			<div class="col text-right small py-1">
