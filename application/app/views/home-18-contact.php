@@ -10,21 +10,15 @@
 
 <div class="container-fluid py-4 bg-white d-none" id="contact">
 	<div class="row">
-		<div class="col">
+		<div class="offset-sm-3 col">
 			<div class="d-flex">
-				<h1 class="text-center flex-fill">Contact</h1>
+				<h1 class="flex-fill">Contact</h1>
 
-				<img src="<?= strings::url( 'images/arrow-up.svg') ?>"
-					id="<?= $_uid = strings::rand() ?>"
-					alt="up arrow" title="top of page"
-					class="up-icon pointer" />
+				<button class="btn no-focus" title="top of page" tabindex="-1" id="<?= $_uid = strings::rand() ?>"><i class="bi bi-arrow-up bi-2x"></i></button>
 
 			</div>
 			<script>
-			$('#<?= $_uid ?>').on( 'click', e => {
-				$(document).trigger( 'go-top');
-
-			});
+			$('#<?= $_uid ?>').on( 'click', e => $(document).trigger( 'go-top'));
 			</script>
 
 		</div>
@@ -32,7 +26,7 @@
 	</div>
 
 	<div class="row">
-		<div class="offset-sm-6 col-sm-6">
+		<div class="offset-sm-3 col">
 			<strong>Gold Coast, Q. Australia</strong><br />
 			PO Box 292 Tugun, Q 4224<br />
 			t. 0418 745334
@@ -101,10 +95,10 @@
 <div class="parallax"></div>
 
 <script>
-$(document).ready( function() {
+$(document).ready( () => {
 	$('#mailform')
 	.on( 'submit', function( evt ) {
-		var em = $('#email').val();
+		let em = $('#email').val();
 		if ( !em.isEmail()) {
 			$('#email').closest('div.form-group').addClass('alert').addClass('alert-warning')
 			$('#email').focus().select();

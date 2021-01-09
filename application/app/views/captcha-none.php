@@ -9,8 +9,5 @@
 */	?>
 
 <script>
-$(document).ready( () => {
-	$('#contact, #contactNAV').removeClass('d-none');
-
-});
+$(document).ready( () => $('#contact, #contactNAV').removeClass('d-none'));
 </script>

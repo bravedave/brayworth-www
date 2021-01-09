@@ -8,7 +8,7 @@
  *
 */	?>
 <div id="parallax">
-	<img src="<?php url::write('images/bg-1600.jpg') ?>" />
+	<img src="<?= strings::url('images/bg-1600.jpg') ?>" />
 </div>
 <div class="parallax"></div>
 
@@ -43,6 +43,8 @@
 			window.scrollTo({ left: 0, top: 150, behavior: 'smooth' });
 
 		}, 100);
+
+		$(document).focus();
 
 	});
 

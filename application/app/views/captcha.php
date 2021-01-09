@@ -8,9 +8,11 @@
  *
 */	?>
 <script>
-grecaptcha.ready( () => {
-	grecaptcha.execute('<?= \config::$captcha->public ?>', {action: 'homepage'}).then(function(token) {
-		( _ => {
+( _ => {
+	grecaptcha.ready( () => {
+		grecaptcha
+		.execute('<?= \config::$captcha->public ?>', {action: 'homepage'})
+		.then( token => {
 			_.post({
 				url : _.url(),
 				data : {
@@ -19,7 +21,7 @@ grecaptcha.ready( () => {
 
 				}
 
-			}).then( function(d) {
+			}).then( d => {
 				if ( 'ack' == d.response) {
 					if ( d.data.success) {
 						$('input[name="soz"]').val( d.soz);
@@ -33,9 +35,9 @@ grecaptcha.ready( () => {
 
 			$('.grecaptcha-badge').fadeOut('slow');
 
-		}) (_brayworth_);
+		});
 
 	});
 
-});
+}) (_brayworth_);
 </script>
