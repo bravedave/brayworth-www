@@ -27,8 +27,8 @@
 
 	<div class="row">
 		<div class="offset-sm-3 col">
-			<strong>Gold Coast, Q. Australia</strong><br />
-			PO Box 292 Tugun, Q 4224<br />
+			<strong>Gold Coast, Q. Australia</strong><br>
+			PO Box 292 Tugun, Q 4224<br>
 			t. 0418 745334
 
 		</div>
@@ -37,13 +37,13 @@
 
 	<div class="row">&nbsp;</div>
 
-	<form method="POST" id="mailform" action="<?php print url::$URL ?>">
-		<input type="hidden" name="soz" value="" />
+	<form method="POST" id="mailform" action="<?= url::$URL ?>">
+		<input type="hidden" name="soz" value="">
 
 		<div class="form-group row">
 			<label class="control-label col-sm-3" for="contactName">Name</label>
 			<div class="col-sm-9">
-				<input class="form-control " type="text" name="contactName" id="contactName" required />
+				<input class="form-control " type="text" name="contactName" id="contactName" required>
 
 			</div>
 
@@ -52,7 +52,7 @@
 		<div class="form-group row">
 			<label class="control-label col-sm-3"  for="email">Email</label>
 			<div class="col-sm-9">
-				<input class="form-control" type="text" name="email" id="email" required />
+				<input class="form-control" type="text" name="email" id="email" required>
 
 			</div>
 
@@ -67,22 +67,25 @@
 
 		</div><!-- div class="form-group row" -->
 
+<?php	if ( false) {	?>
 		<div class="form-group row">
 			<div class="col-sm-3">&nbsp;</div>
 			<div class="col-sm-9">
 				<label class="checkbox">
-					<input type="checkbox"data-toggle="checkbox" name="sendCopy" id="sendCopy" value="true" />
+					<input type="checkbox"data-toggle="checkbox" name="sendCopy" id="sendCopy" value="true">
 					Send a copy of this email to yourself
 
 				</label>
 
 			</div>
 
-		</div><!-- div class="form-group row" -->
+		</div>
+
+<?php	}	?>
 
 		<div class="form-group row">
 			<div class="offset-sm-3 col-sm-9">
-				<input class="btn btn-outline-primary" name="action" type="submit" value="Submit" />
+				<input class="btn btn-outline-primary" name="action" type="submit" value="Submit">
 
 			</div>
 
