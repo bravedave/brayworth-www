@@ -8,7 +8,7 @@
  *
 */
 
-abstract class config extends dvc\config {
+abstract class config extends bravedave\dvc\config {
 	static $DB_TYPE = 'sqlite';	// needs to be mysql or sqlite to run
 
 	static $WEBNAME = 'Brayworth Web Design';
@@ -18,5 +18,4 @@ abstract class config extends dvc\config {
 	//~ static $MAILSERVER = 'mail';
 
 	static $TIMEZONE = 'Australia/Brisbane';
-
 }

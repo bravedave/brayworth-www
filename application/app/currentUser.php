@@ -8,7 +8,7 @@
  *
 */
 
-abstract class currentUser extends dvc\currentUser {
+abstract class currentUser extends bravedave\dvc\currentUser {
 	static public function isProgrammer() {
 		return ( false);
 
