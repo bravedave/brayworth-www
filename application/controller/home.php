@@ -8,9 +8,7 @@
  *
 */
 
-use bravedave\dvc\json;
-use bravedave\dvc\logger;
-use bravedave\dvc\Request;
+use bravedave\dvc\{json, logger, Request};
 
 class home extends Controller {
 	public $RequireValidation = false;
@@ -117,7 +115,7 @@ class home extends Controller {
 
 						if ($response->score > 0.5) {
 
-							if ( $debug) logger::debug(sprintf(
+							if ($debug) logger::debug(sprintf(
 								'<pass reCaptcha : %s - %s> %s',
 								$response->score,
 								Request::get()->getRemoteIP(),
