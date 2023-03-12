@@ -8,6 +8,10 @@
  *
 */
 
+use bravedave\dvc\json;
+use bravedave\dvc\logger;
+use bravedave\dvc\Request;
+
 class home extends Controller {
 	public $RequireValidation = false;
 
@@ -22,10 +26,14 @@ class home extends Controller {
 	}
 
 	protected function postHandler() {
+		$debug = false;
+
 		$action = $this->getPost('action');
 		if ('Submit' == $action) {
+
 			$soz = $this->getPost('soz');
 			if ('accepted' == $soz) {
+
 				$_comments = $this->getPost('comments');
 				/*--- ---[ruskies]--- ---*/
 				$pr = $this->_russian($_comments);
@@ -53,14 +61,11 @@ class home extends Controller {
 
 				Response::redirect($mail->Send() ? url::tostring('success') : url::tostring('failure/?err=' . urlencode($mail->ErrorInfo)));
 			}
-			// else {
-			// 	throw new Exceptions\soz;
-			//
-			// }
-
 		} elseif ('send-message' == $action) {
+
 			$soz = $this->getPost('soz');
 			if ('accepted' == $soz) {
+
 				$_comments = $this->getPost('comments');
 				/*--- ---[ruskies]--- ---*/
 				$pr = $this->_russian($_comments);
@@ -83,53 +88,111 @@ class home extends Controller {
 				$mail->Subject = sprintf('%s Contact : %s', config::$WEBNAME, $contactName);
 				$mail->MsgHTML(sys::text2html($comments));
 
-				if ($sendCopy) {
-					$mail->AddCC($email, $contactName);
-				}
+				if ($sendCopy) $mail->AddCC($email, $contactName);
 
 				if ($mail->Send()) {
-					\Json::ack($action);
+
+					json::ack($action);
 				} else {
-					\Json::nak($mail->ErrorInfo);
+
+					json::nak($mail->ErrorInfo);
 				}
 			}
-			// else {
-			// 	throw new Exceptions\soz;
-			//
-			// }
-
 		} elseif ('verify-captcha' == $action) {
-			if (\config::$captcha) {
+
+			// $debug = true;
+
+			if (config::$captcha) {
+
 				if ($token = $this->getPost('token')) {
+
 					$req = new \HttpPost('https://www.google.com/recaptcha/api/siteverify');
 					$req->setPostData([
-						'secret' => \config::$captcha->private,
+						'secret' => config::$captcha->private,
 						'response' => $token
-
 					]);
 
 					$req->send();
-					if ($response = $req->getResponse()) {
-						// sys::logger( sprintf('%s :: %s', $action, $response));
-						\Json::ack($action)
-							->add('data', @json_decode($response))
-							->add('soz', 'accepted');
+					if ($response = $req->getResponseJSON()) {
+
+						if ($response->score > 0.5) {
+
+							if ( $debug) logger::debug(sprintf(
+								'<pass reCaptcha : %s - %s> %s',
+								$response->score,
+								Request::get()->getRemoteIP(),
+								__METHOD__
+							));
+
+							json::ack($action)
+								->add('data', $response)
+								->add('soz', 'accepted');
+						} else {
+
+							logger::info(sprintf(
+								'<Fail reCaptcha : %s - %s> %s',
+								$response->score,
+								Request::get()->getRemoteIP(),
+								__METHOD__
+							));
+							json::nak(sprintf('%s - bad rating', $action));
+						}
 					} else {
-						\Json::nak(sprintf('%s - bad response', $action));
+
+						json::nak(sprintf('%s - bad response', $action));
 					}
 				} else {
-					\Json::nak(sprintf('%s - no token', $action));
+
+					json::nak(sprintf('%s - no token', $action));
 				}
 			} else {
-				\Json::nak(sprintf('%s - not configured', $action));
+				json::nak(sprintf('%s - not configured', $action));
 			}
 		} else {
+
 			sys::logger(sprintf('%s :: nak', $action));
 		}
 	}
 
 	protected function _index($option = '') {
-		$this->_traditional($option);
+
+		$render = [
+			'css' => [
+				sprintf('<link rel="canonical" href="%s" />', url::$URL)
+			],
+			'parallax' => [
+				'home-18',
+				'home-18-about',
+				'home-18-contact'
+			],
+			'meta' => [
+				'<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />',
+				'<meta name="viewport" content="width=device-width" />'
+			],
+			'navbar' => 'navbar-18'
+		];
+
+		if ('success' == $option) {
+
+			array_unshift($render['parallax'], 'success');
+		} elseif ($option == 'failure') {
+
+			array_unshift($render['parallax'], 'failure');
+		}
+
+		if (config::$captcha) {
+
+			$render['scripts'] = [
+				'<script src="https://www.google.com/recaptcha/api.js?render=6Le2OXgUAAAAAJlZnzozDmuZeI2B-mbmJKqABvq3"></script>'
+			];
+
+			$render['parallax'][] = 'captcha';
+		} else {
+
+			$render['parallax'][] = 'captcha-none';
+		}
+
+		$this->render($render);
 	}
 
 	protected function render($params) {
@@ -140,77 +203,8 @@ class home extends Controller {
 		}
 	}
 
-	protected function _traditional($option = '') {
-		$render = [
-			'css' => [
-				sprintf('<link rel="canonical" href="%s" />', url::$URL)
-
-			],
-			'parallax' => [
-				'home-18',
-				'home-18-about',
-				'home-18-contact'
-
-			],
-			'meta' => [
-				'<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />',
-				'<meta name="viewport" content="width=device-width" />'
-
-			],
-			'navbar' => 'navbar-18'
-
-		];
-
-		if ('success' == $option) {
-			array_unshift($render['parallax'], 'success');
-		} elseif ($option == 'failure') {
-			array_unshift($render['parallax'], 'failure');
-		}
-
-		if (\config::$captcha) {
-			$render['scripts'] = [
-				'<script src="https://www.google.com/recaptcha/api.js?render=6Le2OXgUAAAAAJlZnzozDmuZeI2B-mbmJKqABvq3"></script>'
-
-			];
-
-			$render['parallax'][] = 'captcha';
-		} else {
-			$render['parallax'][] = 'captcha-none';
-		}
-
-		$this->render($render);
-	}
-
-	protected function _legacy($option = '') {
-		$p = new page;
-		$p->css[] = sprintf('<link rel="canonical" href="%s" />', url::$URL);
-		if (\config::$captcha) {
-			$p->scripts[] = '<script src="https://www.google.com/recaptcha/api.js?render=6Le2OXgUAAAAAJlZnzozDmuZeI2B-mbmJKqABvq3"></script>';
-		}
-
-		$p
-			->header()
-			->title('navbar-18');
-
-		if ($option == 'success') {
-			new dvc\html\div('Successfully sent message', ['class' => 'alert alert-success', 'style' => 'margin-top: 90px; margin-left: 5px; max-width: 80%;']);
-		} elseif ($option == 'failure') {
-			new dvc\html\div(
-				sprintf('<b>Failed to send message</b> %s', $this->getParam('err')),
-				['class' => 'alert alert-warning', 'style' => 'margin-top: 90px; margin-left: 5px; max-width: 80%;']
-			);
-		}
-
-		$this->load('home-18');
-		$this->load('home-18-about');
-		$this->load('home-18-contact');
-
-		if (\config::$captcha) {
-			$this->load('captcha');
-		}
-	}
-
 	public function checkin() {
+
 		if ($key = $this->getParam('api')) {
 
 			if ($locale = $this->getParam('locale')) {
@@ -245,21 +239,27 @@ class home extends Controller {
 						// 	$j->add( 'response', 'nAK' );
 
 					} else {
-						\Json::nak('checkin');
+
+						json::nak('checkin');
 					}
 				} else {
-					\Json::nak('checkin::event');
+
+					json::nak('checkin::event');
 				}
 			} else {
-				\Json::nak('checkin::locale');
+
+				json::nak('checkin::locale');
 			}
 		} else {
-			\Json::nak('checkin');
+
+			json::nak('checkin');
 		}
 	}
 
 	public function dbinfo() {
+
 		if (currentUser::isProgrammer() || $this->Request->ServerIsLocal()) {
+
 			$this->render([
 				'title' => 'dbinfo',
 				'primary' => 'db-info',
@@ -269,6 +269,7 @@ class home extends Controller {
 	}
 
 	public function index($option = '') {
+
 		$this->isPost() ?
 			$this->postHandler() :
 			$this->_index($option);
@@ -287,6 +288,7 @@ class home extends Controller {
 	}
 
 	public function privacy() {
+
 		$p = new page;
 		$p->css[] = sprintf('<link rel="canonical" href="%s" />', url::tostring('privacy'));
 		$p

@@ -45,9 +45,12 @@
 
   <h4>Service Providers</h4>
 
-  <p>We do not employ third-parties - we do not share information with any
-    third party.
-  </p>
+  <p>We do use reCaptcha on our website to rate your browser as likely to
+    be a bot or human and use the response to protect our contact form</p>
+
+  <p>Aside from the reCaptcha; We do not employ third-parties - we do not
+    share information with any third party, and do not retain or use the
+    reCaptcha data for any other purpose.</p>
 
   <h4>Security</h4>
 
