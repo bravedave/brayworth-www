@@ -8,148 +8,21 @@
  *
 */
 
-use bravedave\dvc\{json, logger, Request};
+use bravedave\dvc\{json, ServerRequest};
 
 class home extends Controller {
 	public $RequireValidation = false;
 
-	protected function _russian($s) {
-		$len = strlen(trim($s, ' ?.,!'));
-		if ($len > 0) {
-			$res = preg_match_all('/[А-Яа-яЁё]/u', $s);
-			return round($res / $len, 2);
-		}
-
-		return ($len);
-	}
-
 	protected function postHandler() {
-		$debug = false;
 
-		$action = $this->getPost('action');
-		if ('Submit' == $action) {
+		$request = new ServerRequest;
+		$action = $request('action');
 
-			$soz = $this->getPost('soz');
-			if ('accepted' == $soz) {
-
-				$_comments = $this->getPost('comments');
-				/*--- ---[ruskies]--- ---*/
-				$pr = $this->_russian($_comments);
-				/*--- ---[ruskies]--- ---*/
-
-				$contactName = $this->getPost('contactName');
-				$email = $this->getPost('email');
-
-				$comments = sprintf('%s%s%sIP : %s', $_comments, PHP_EOL, PHP_EOL, $this->Request->getRemoteIP());
-				if ($pr > .3) {
-					$comments .= sprintf('%s%s russian', PHP_EOL, $pr * 100);
-				}
-				$comments .= sprintf('%suserAgent: %s', PHP_EOL, \userAgent::toString());
-
-				$sendCopy = $this->getPost('sendCopy');
-
-				$mail = sys::mailer();
-				$mail->addReplyTo($email, $contactName);
-				$mail->AddAddress(config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
-				$mail->Subject = sprintf('%s Contact : %s', config::$WEBNAME, $contactName);
-				$mail->MsgHTML(sys::text2html($comments));
-
-				if ($sendCopy == 'true')
-					$mail->AddCC($email, $contactName);
-
-				Response::redirect($mail->Send() ? url::tostring('success') : url::tostring('failure/?err=' . urlencode($mail->ErrorInfo)));
-			}
-		} elseif ('send-message' == $action) {
-
-			$soz = $this->getPost('soz');
-			if ('accepted' == $soz) {
-
-				$_comments = $this->getPost('comments');
-				/*--- ---[ruskies]--- ---*/
-				$pr = $this->_russian($_comments);
-				/*--- ---[ruskies]--- ---*/
-
-				$contactName = $this->getPost('contactName');
-				$email = $this->getPost('email');
-
-				$comments = sprintf('%s%s%sIP : %s', $_comments, PHP_EOL, PHP_EOL, $this->Request->getRemoteIP());
-				if ($pr > .3) {
-					$comments .= sprintf('%s%s russian', PHP_EOL, $pr * 100);
-				}
-				$comments .= sprintf('%suserAgent: %s', PHP_EOL, \userAgent::toString());
-
-				$sendCopy = ('yes' == $this->getPost('sendCopy'));
-
-				$mail = sys::mailer();
-				$mail->addReplyTo($email, $contactName);
-				$mail->AddAddress(config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
-				$mail->Subject = sprintf('%s Contact : %s', config::$WEBNAME, $contactName);
-				$mail->MsgHTML(sys::text2html($comments));
-
-				if ($sendCopy) $mail->AddCC($email, $contactName);
-
-				if ($mail->Send()) {
-
-					json::ack($action);
-				} else {
-
-					json::nak($mail->ErrorInfo);
-				}
-			}
-		} elseif ('verify-captcha' == $action) {
-
-			// $debug = true;
-
-			if (config::$captcha) {
-
-				if ($token = $this->getPost('token')) {
-
-					$req = new \HttpPost('https://www.google.com/recaptcha/api/siteverify');
-					$req->setPostData([
-						'secret' => config::$captcha->private,
-						'response' => $token
-					]);
-
-					$req->send();
-					if ($response = $req->getResponseJSON()) {
-
-						if ($response->score > 0.5) {
-
-							if ($debug) logger::debug(sprintf(
-								'<pass reCaptcha : %s - %s> %s',
-								$response->score,
-								Request::get()->getRemoteIP(),
-								__METHOD__
-							));
-
-							json::ack($action)
-								->add('data', $response)
-								->add('soz', 'accepted');
-						} else {
-
-							logger::info(sprintf(
-								'<Fail reCaptcha : %s - %s> %s',
-								$response->score,
-								Request::get()->getRemoteIP(),
-								__METHOD__
-							));
-							json::nak(sprintf('%s - bad rating', $action));
-						}
-					} else {
-
-						json::nak(sprintf('%s - bad response', $action));
-					}
-				} else {
-
-					json::nak(sprintf('%s - no token', $action));
-				}
-			} else {
-				json::nak(sprintf('%s - not configured', $action));
-			}
-		} else {
-
-			sys::logger(sprintf('%s :: nak', $action));
-		}
+		return match ($action) {
+			'send-message' => handler::sendMessage($request),
+			'verify-captcha' => handler::verifyCaptcha($request),
+			default => parent::postHandler()
+		};
 	}
 
 	protected function _index($option = '') {
@@ -169,14 +42,6 @@ class home extends Controller {
 			],
 			'navbar' => 'navbar-18'
 		];
-
-		if ('success' == $option) {
-
-			array_unshift($render['parallax'], 'success');
-		} elseif ($option == 'failure') {
-
-			array_unshift($render['parallax'], 'failure');
-		}
 
 		if (config::$captcha) {
 
@@ -264,13 +129,6 @@ class home extends Controller {
 				'secondary' => 'index'
 			]);
 		}
-	}
-
-	public function index($option = '') {
-
-		$this->isPost() ?
-			$this->postHandler() :
-			$this->_index($option);
 	}
 
 	public function tides() {

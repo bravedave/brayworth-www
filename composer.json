@@ -5,12 +5,14 @@
 	"homepage": "http://brayworth.com",
 	"type": "project",
 	"license": "MIT",
-	"prefer-stable": true,
-	"authors": [{
-		"name": "Brave Dave",
-		"email": "davbray@gmail.com",
-		"homepage": "http://brayworth.com"
-	}],
+	"prefer-stable": false,
+	"authors": [
+		{
+			"name": "Brave Dave",
+			"email": "davbray@gmail.com",
+			"homepage": "http://brayworth.com"
+		}
+	],
 	"require": {
 		"bravedave/dvc": "*"
 	},
@@ -18,5 +20,11 @@
 		"psr-4": {
 			"": "application/app/"
 		}
+	},
+	"scripts": {
+		"start": [
+			"Composer\\Config::disableProcessTimeout",
+			"bash ./run.sh"
+		]
 	}
 }

@@ -6,8 +6,8 @@
  *
  * MIT License
  *
-*/	?>
+*/  ?>
 
 <script>
-$(document).ready( () => $('#contact, #contactNAV').removeClass('d-none'));
+  (_ => _.ready(() => $('.js-contact').removeClass('d-none')))(_brayworth_);
 </script>

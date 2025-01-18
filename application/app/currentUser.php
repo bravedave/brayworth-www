@@ -9,9 +9,9 @@
 */
 
 abstract class currentUser extends bravedave\dvc\currentUser {
+
 	static public function isProgrammer() {
-		return ( false);
 
+		return false;
 	}
-
 }

@@ -8,111 +8,112 @@
  *
 */	?>
 
-<div class="container-fluid py-4 bg-white d-none" id="contact">
-	<div class="row">
+<div id="contact"></div>
+<article class="container-fluid py-4 bg-white d-none js-contact"
+	id="<?= $_article = strings::rand() ?>">
+
+	<div class="row mb-2">
+
 		<div class="offset-sm-3 col">
+
 			<div class="d-flex">
+
 				<h1 class="flex-fill">Contact</h1>
-
-				<button class="btn no-focus" title="top of page" tabindex="-1" id="<?= $_uid = strings::rand() ?>"><i class="bi bi-arrow-up bi-2x"></i></button>
-
+				<button class="btn no-focus js-top-of-page" title="top of page" tabindex="-1">
+					<i class="bi bi-arrow-up bi-2x"></i></button>
 			</div>
-			<script>
-			$('#<?= $_uid ?>').on( 'click', e => $(document).trigger( 'go-top'));
-			</script>
-
 		</div>
-
 	</div>
 
-	<div class="row">
+	<div class="row mb-2">
+
 		<div class="offset-sm-3 col">
+
 			<strong>Gold Coast, Q. Australia</strong><br>
 			PO Box 292 Tugun, Q 4224<br>
 			t. 0418 745334
-
 		</div>
-
 	</div>
 
-	<div class="row">&nbsp;</div>
-
-	<form method="POST" id="mailform" action="<?= url::$URL ?>">
+	<form autocomplete="off">
 		<input type="hidden" name="soz" value="">
+		<input type="hidden" name="action" value="">
 
-		<div class="form-group row">
-			<label class="control-label col-sm-3" for="contactName">Name</label>
-			<div class="col-sm-9">
-				<input class="form-control " type="text" name="contactName" id="contactName" required>
+		<div class="row mb-2">
 
+			<label class="control-label col-sm-3" for="<?= $_uid = strings::rand() ?>">Name</label>
+			<div class="col">
+				<input class="form-control " type="text" name="contactName" id="<?= $_uid ?>" required>
 			</div>
-
-		</div><!-- div class="form-group row" -->
-
-		<div class="form-group row">
-			<label class="control-label col-sm-3"  for="email">Email</label>
-			<div class="col-sm-9">
-				<input class="form-control" type="text" name="email" id="email" required>
-
-			</div>
-
-		</div><!-- div class="form-group row" -->
-
-		<div class="form-group row">
-			<label class="control-label col-sm-3" for="commentsText">Message</label>
-			<div class="col-sm-9">
-				<textarea class="form-control" rows="7" name="comments" id="commentsText"></textarea>
-
-			</div>
-
-		</div><!-- div class="form-group row" -->
-
-<?php	if ( false) {	?>
-		<div class="form-group row">
-			<div class="col-sm-3">&nbsp;</div>
-			<div class="col-sm-9">
-				<label class="checkbox">
-					<input type="checkbox"data-toggle="checkbox" name="sendCopy" id="sendCopy" value="true">
-					Send a copy of this email to yourself
-
-				</label>
-
-			</div>
-
 		</div>
 
-<?php	}	?>
+		<div class="row mb-2">
 
-		<div class="form-group row">
-			<div class="offset-sm-3 col-sm-9">
-				<input class="btn btn-outline-primary" name="action" type="submit" value="Submit">
-
+			<label class="control-label col-sm-3" for="<?= $_uid = strings::rand() ?>">Email</label>
+			<div class="col">
+				<input class="form-control" type="text" name="email" id="<?= $_uid ?>" required>
 			</div>
+		</div>
 
-		</div><!-- div class="form-group row" -->
+		<div class="row mb-2">
 
+			<label class="control-label col-sm-3" for="<?= $_uid = strings::rand() ?>">Message</label>
+			<div class="col">
+				<textarea class="form-control" rows="7" name="comments" id="<?= $_uid ?>"></textarea>
+			</div>
+		</div>
+
+		<div class="row mb-2">
+
+			<div class="offset-sm-3 col js-feedback">
+				<button class="btn btn-outline-primary" type="submit">send message</button>
+			</div>
+		</div>
 	</form>
 
-</div><!-- div class="container" -->
+	<script>
+		(_ => {
+
+			const article = $('#<?= $_article ?>');
+			const form = article.find('form');
+
+			article.find('.js-top-of-page').on('click', e => $(document).trigger('go-top'));
+
+			_.ready(() => {
+
+				form.on('submit', function(evt) {
+
+					const em = form.find('input[name=email]').val();
+					if (!em.isEmail()) {
+
+						form.find('input[name=email]').closest('.row')
+							.addClass('alert alert-warning');
+						form.find('input[name=email]').focus().select();
+						return false;
+					}
+
+					form.find('input[name=email]').closest('.row')
+						.removeClass('alert alert-warning');
+
+					form.find('.js-feedback').html('<div class="spinner-border"></div>');
+					form.find('input[name=action]').val('send-message')
+					_.fetch.post.form(_.url('<?= $this->route ?>'), this)
+						.then(d => {
+
+							if ('ack' == d.response) {
+
+								form.find('.js-feedback').html('<div class="alert alert-success">Thank you for your message</div>');
+							} else {
+
+								_.growl(d);
+							}
+						});
+
+					return false;
+				});
+			});
+		})(_brayworth_);
+	</script>
+</article><!-- div class="container" -->
 
 <div class="parallax"></div>
-
-<script>
-$(document).ready( () => {
-	$('#mailform')
-	.on( 'submit', function( evt ) {
-		let em = $('#email').val();
-		if ( !em.isEmail()) {
-			$('#email').closest('div.form-group').addClass('alert').addClass('alert-warning')
-			$('#email').focus().select();
-			return ( false );
-
-		}
-
-		$('#email').closest('div.form-group').removeClass('alert').removeClass('alert-warning')
-		return ( true );
-
-	});
-
-})
-</script>

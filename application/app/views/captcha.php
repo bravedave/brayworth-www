@@ -8,32 +8,41 @@
  *
 */	?>
 <script>
-( _ => {
-	grecaptcha.ready( () => {
-		grecaptcha
-		.execute('<?= config::$captcha->public ?>', {action: 'homepage'})
-		.then( token => {
+	(_ => {
 
-			_.post({
-				url : _.url(),
-				data : {
-					action : 'verify-captcha',
-					token : token
-				}
-			}).then( d => {
+		grecaptcha.ready(() => {
 
-				if ( 'ack' == d.response) {
+			grecaptcha
+				.execute('<?= config::$captcha->public ?>', {
+					action: 'homepage'
+				})
+				.then(token => {
 
-					if ( d.data.success) {
-						$('input[name="soz"]').val( d.soz);
-						$('#contact, #contactNAV').removeClass('d-none');
-					}
-				}
-			});
+					_.post({
+						url: _.url(),
+						data: {
+							action: 'verify-captcha',
+							token: token
+						}
+					}).then(d => {
 
-			$('.grecaptcha-badge').fadeOut('slow');
-			// console.log('faded ?');
+						if ('ack' == d.response) {
+
+							if (d.data.success) {
+
+								$('input[name="soz"]').val(d.soz);
+								$('.js-contact').removeClass('d-none');
+								console.log('success');
+							}
+						}
+						console.log(d);
+					});
+
+					$('.grecaptcha-badge').fadeOut('slow');
+					// console.log('faded ?');
+				});
+
+				console.log('grecaptcha');
 		});
-	});
-}) (_brayworth_);
+	})(_brayworth_);
 </script>
