@@ -24,7 +24,7 @@
 	"scripts": {
 		"start": [
 			"Composer\\Config::disableProcessTimeout",
-			"bash ./run.sh"
+			"php -S 0.0.0.0:13380 www/_dvc.php"
 		]
 	}
 }
