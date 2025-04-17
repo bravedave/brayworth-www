@@ -9,9 +9,9 @@
 */
 
 class application extends bravedave\dvc\application {
+
 	static function startDir() {
-		return dirname( __DIR__);
 
+		return dirname(__DIR__);
 	}
-
 }

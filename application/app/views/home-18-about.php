@@ -69,7 +69,7 @@
 
 			<p>Find the source code for this web site at <a href="https://github.com/bravedave/brayworth-www/" target="_blank"><i class="bi bi-github"></i> https://github.com/bravedave/brayworth-www/</a></p>
 
-			<p>Find documentation of the MVC Web Application Architecture <a href="/docs/"><i class="bi bi-stickies"></i> here</a></p>
+			<p>Find documentation of the MVC Web Application Architecture <a href="<?= strings::url('docs') ?>"><i class="bi bi-stickies"></i> here</a></p>
 
 			<p>Find some recent work at these websites:</p>
 		</div>
