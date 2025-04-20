@@ -14,7 +14,8 @@
 		}
 	],
 	"require": {
-		"bravedave/dvc": "*"
+		"bravedave/dvc": "*",
+		"phpmailer/phpmailer": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
