@@ -9,7 +9,6 @@
 */
 
 use bravedave\dvc\{http, json, logger, Request, sendmail, ServerRequest, sys};
-use Symfony\Component\Mime\Address;
 
 abstract class handler {
 
@@ -91,8 +90,8 @@ abstract class handler {
 
       $sendCopy = $request('sendCopy');
 
-      $to = new Address(config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
-      $replyTo = new Address($email, $contactName);
+      $to = sendmail::address(config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
+      $replyTo = sendmail::address($email, $contactName);
 
       //->cc('cc@example.com')
       //->bcc('bcc@example.com')
@@ -107,7 +106,7 @@ abstract class handler {
 
       if ($sendCopy == 'true') {
 
-        $cc = new Address($email, $contactName);
+        $cc = sendmail::address($email, $contactName);
         $_email->cc($cc);
       }
 
@@ -156,8 +155,8 @@ abstract class handler {
 
       $comments = implode(PHP_EOL, $comments);
 
-      $to = new Address(config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
-      $replyTo = new Address($email, $contactName);
+      $to = sendmail::address(config::$SUPPORT_EMAIL, config::$SUPPORT_NAME);
+      $replyTo = sendmail::address($email, $contactName);
 
       //->cc('cc@example.com')
       //->bcc('bcc@example.com')
@@ -174,7 +173,7 @@ abstract class handler {
       $sendCopy = ('yes' == $request('sendCopy'));
       if ($sendCopy) {
 
-        $cc = new Address($email, $contactName);
+        $cc = sendmail::address($email, $contactName);
         $_email->cc($cc);
       }
 
@@ -185,9 +184,9 @@ abstract class handler {
 
         return json::nak($th->getMessage());
       }
-
-      return json::ack($request('action'));
     }
+
+    return json::ack($request('action'));
   }
 
   public static function verifyCaptcha(ServerRequest $request): json {
