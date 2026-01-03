@@ -20,9 +20,6 @@ services:
       - ./workspace/root:/root
       - ./app:/app
       - ./Caddyfile.d:/etc/frankenphp/Caddyfile.d
-    ports:
-      - "80:80"
-      - "443:443"
     networks:
       - internal
     restart: unless-stopped
