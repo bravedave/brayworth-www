@@ -1,20 +1,5 @@
 # [Brayworth Web Site](https://brayworth.com)
 
-The Website of Brayworth
+This is the Web Site of Brayworth P/L.
+It's a dead-simple FrankenPHP stack designed to be attached to a Cloudflare Tunnel.
 
-## Install
-
-```bash
-git clone https://github.com/bravedave/brayworth-www.git brayworth
-cd brayworth
-composer install
-```
-
-
-# SE Linux
-
-if the system is running SE Linux set the contexts
-```bash
-# semanage fcontext -a -t httpd_sys_rw_content_t "<path to web>(/.*)?"
-restorecon -R <path to web>
-```

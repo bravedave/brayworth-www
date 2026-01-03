@@ -1,0 +1,9 @@
+http://brayworth.dev, brayworth.localhost {
+	root * /app/public
+	file_server
+
+	rewrite * /_mvp.php
+
+	encode zstd gzip
+	php_server
+}

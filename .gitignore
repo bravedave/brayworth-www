@@ -1,7 +1,6 @@
-.bak
-application/data/
-vendor/
-composer.lock
-application/app/public/css/dvc-4.min.css
-application/app/public/js/brayworthlib.js
-application/app/public/js/brayworthlib4.js
+.bak/
+app/application/data/
+app/vendor/
+app/composer.lock
+workspace/
+.env

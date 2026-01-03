@@ -1,0 +1,42 @@
+# Docker Compose file for a PHP development environment server
+#
+# see : https://docs.docker.com/reference/compose-file/
+#
+# You can just run docker compose up -d
+# it will pull the images and build the custom ones as needed
+#
+# start by creating a .env file in the same directory as
+# this docker-compose.yaml file and add your environment variables there
+#
+# example:
+# CLOUDFLARE_TUNNEL_TOKEN=[token]
+
+services:
+  frankenphp:
+    build: .
+    container_name: frankenphp-brayworth
+    working_dir: /app
+    volumes:
+      - ./workspace/root:/root
+      - ./app:/app
+      - ./Caddyfile.d:/etc/frankenphp/Caddyfile.d
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - internal
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel run
+    env_file: .env
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - internal
+    restart: unless-stopped
+
+networks:
+  internal:
+    driver: bridge

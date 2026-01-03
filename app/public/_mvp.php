@@ -1,0 +1,22 @@
+<?php
+/*
+ * Copyright (c) 2025 David Bray
+ * Licensed under the MIT License. See LICENSE file for details.
+ *
+ * You can use php's built in server
+ * 	php -S localhost:80 -c  c:\php\php.ini-development  index.php
+ *
+ * if you do, check first and exit if it's a public resource - Serve that instead
+*/
+
+if (preg_match('/\.(?:png|ico|jpg|jpeg|gif|css|js)$/', $_SERVER['REQUEST_URI'])) {
+
+	if (file_exists(trim($_SERVER['REQUEST_URI'], ' /\\')))
+		return false;    // serve the requested resource as-is.
+}
+
+// load the autoloader
+require __DIR__ . '/../vendor/autoload.php';
+
+// run the application
+application::run();
