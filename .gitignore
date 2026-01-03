@@ -4,3 +4,5 @@ app/vendor/
 app/composer.lock
 workspace/
 .env
+app/application/.DS_Store
+app/.DS_Store
