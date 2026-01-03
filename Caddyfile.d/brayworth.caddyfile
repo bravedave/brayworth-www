@@ -1,9 +1,11 @@
-http://brayworth.dev, brayworth.localhost {
+http://brayworth.com {
 	root * /app/public
-	file_server
-
-	rewrite * /_mvp.php
-
 	encode zstd gzip
+	try_files {path} /_mvp.php
 	php_server
+	file_server
+}
+
+http://www.brayworth.com.au, http://brayworth.com.au, http://www.brayworth.com, http://www.brayworth.dev, http://brayworth.dev {
+	redir http://brayworth.com{uri} 301
 }
