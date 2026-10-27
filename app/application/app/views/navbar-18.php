@@ -30,7 +30,7 @@
 
 			<li class="nav-item">
 
-				<a href="https://mail.brayworth.com.au/webmail/" target="_blank" class="nav-link text-white">webmail</a>
+				<a href="https://mail.brayworth.com.au/" target="_blank" class="nav-link text-white">webmail</a>
 			</li>
 
 			<li class="nav-item">
